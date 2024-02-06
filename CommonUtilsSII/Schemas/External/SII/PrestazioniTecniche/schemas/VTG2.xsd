@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VTG2/v1"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.6"
+	xmlns:sgas="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.4"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VTG2/v1">
+	
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.6"	schemaLocation="StruttureGenerali_v1_6.xsd"/>
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.4" schemaLocation="StruttureGas_v1_4.xsd"/>
+	
+	<!-- ************** FLUSSI **************** -->
+	
+	<!-- *************** 0050 ***************** -->
+	
+	<xs:complexType name="FlussoVTG2.0050Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreGestoreCPType" />
+					<xs:element name="DatiTecnici" type="sgas:DatiTecniciConPrelievoType" />
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleAnagraficaIndirizziEx1Type"/>            
+					<xs:element name="IvaImposte" type="sg:IvaImposteType"/>            
+					<xs:element name="ServizioEnergetico" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Beneficiario" type="sg:BeneficiarioType"/>
+							</xs:sequence>
+						</xs:complexType>	
+					</xs:element>            
+					<xs:element name="Autolettura" type="sg:AutoletturaType" minOccurs="0"/>
+					<xs:element name="InformazioniFUI" type="sg:InformazioniFuiType"/>
+					<xs:element name="DatiAttivazione" type="sgas:DatiAttivazioneVolturaGasType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="VTG2" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0050" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- *************** 0100 ***************** -->
+	
+	<xs:complexType name="FlussoVTG2.0100Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreCPOpzGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="sgas:DatiTecniciBaseType"/>
+					<xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="VTG2" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0100" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- *************** 0150 ***************** -->
+	
+	<xs:complexType name="FlussoVTG2.0150Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreCPOpzGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="sgas:DatiTecniciBaseRemiOpzType"/>
+					<xs:element name="Esito" type="sg:EsitoBaseType"/>
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleConDenomType" minOccurs="0"/>
+					<xs:element name="DatiAttivazione" type="sg:DatiAttivazioneBaseUtenteType" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="VTG2" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0150" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- *************** RESP ***************** --> 
+
+	<xs:complexType name="FlussoVTG2.RESPType" >
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreCPOpzGestoreCPType"/>
+					<xs:element name="Esito" type="sg:DefaultEsitoType"/>
+				</xs:sequence>        
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="VTG2"/>
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="RESP"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VT1/v1"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VT1/v1" 
+		schemaLocation="VT1.xsd"/>
+
+	<complexType name="richiestaAttivazioneContrattualeMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:richiestaAttivazioneContrattualeRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:richiestaAttivazioneContrattualeDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="richiestaAttivazioneContrattualeRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:richiestaAttivazioneContrattualeAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="richiestaAttivazioneContrattualeAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="VT1"/>
+					<element name="Operazione" type="string" fixed="VT1.0050"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="richiestaAttivazioneContrattualeDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoVT1.0050Type"/>
+		</sequence>
+	</complexType>
+	
+	
+	<complexType name="ammissibilitaRichiestaMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:ammissibilitaRichiestaRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:ammissibilitaRichiestaDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ammissibilitaRichiestaRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:ammissibilitaRichiestaAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ammissibilitaRichiestaAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="VT1"/>
+					<element name="Operazione" type="string" fixed="VT1.0100"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ammissibilitaRichiestaDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoVT1.0100Type"/>
+		</sequence>
+	</complexType>
+	
+	
+	
+	<complexType name="annullamentoAttivazioneContrattualeMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:annullamentoAttivazioneContrattualeRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:annullamentoAttivazioneContrattualeDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="annullamentoAttivazioneContrattualeRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:annullamentoAttivazioneContrattualeAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="annullamentoAttivazioneContrattualeAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="VT1"/>
+					<element name="Operazione" type="string" fixed="VT1.0040"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="annullamentoAttivazioneContrattualeDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoVT1.0040Type"/>
+		</sequence>
+	</complexType>
+	
+	
+	<complexType name="ammissibilitaAnnullamentoMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:ammissibilitaAnnullamentoRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:ammissibilitaAnnullamentoDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ammissibilitaAnnullamentoRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:ammissibilitaAnnullamentoAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ammissibilitaAnnullamentoAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="VT1"/>
+					<element name="Operazione" type="string" fixed="VT1.0101"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ammissibilitaAnnullamentoDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoVT1.0101Type"/>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="esitoAttivazioneContrattualeMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:esitoAttivazioneContrattualeRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:esitoAttivazioneContrattualeDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="esitoAttivazioneContrattualeRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:esitoAttivazioneContrattualeAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="esitoAttivazioneContrattualeAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="VT1"/>
+					<element name="Operazione" type="string" fixed="VT1.0150"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="esitoAttivazioneContrattualeDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoVT1.0150Type"/>
+		</sequence>
+	</complexType>
+	
+</schema>

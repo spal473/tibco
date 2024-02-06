@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:sel="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.1"
+	 xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.3"
+	 targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VT1/v1"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.1" schemaLocation="StruttureEl_v1_1.xsd"/>
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.3" schemaLocation="StruttureGenerali_v1_3.xsd"/>
+
+	<!-- ************** FLUSSI **************** -->
+	<xs:complexType name="FlussoVT1.0050Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUDDGestoreType"/>
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType"/>
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleConDenomEIndirizziTelType"/>
+					<xs:element name="DatiAttivazione" type="sel:VolturaDatiAttivazioneRichiestaType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" type="xs:anySimpleType" fixed="VT1" use="required"/>
+				<xs:attribute name="COD_FLUSSO" type="xs:anySimpleType" fixed="0050" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FlussoVT1.0100Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUDDGestoreCPOpzType"/>
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType"/>
+					<xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" type="xs:anySimpleType" fixed="VT1" use="required"/>
+				<xs:attribute name="COD_FLUSSO" type="xs:anySimpleType" fixed="0100" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FlussoVT1.0040Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUDDGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType"/>
+					<xs:element name="MOTIVAZIONE" type="sg:String255obb"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" type="xs:anySimpleType" fixed="VT1" use="required"/>
+				<xs:attribute name="COD_FLUSSO" type="xs:anySimpleType" fixed="0040" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FlussoVT1.0101Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUDDGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType"/>
+					<xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" type="xs:anySimpleType" fixed="VT1" use="required"/>
+				<xs:attribute name="COD_FLUSSO" type="xs:anySimpleType" fixed="0101" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FlussoVT1.0150Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUDDGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType"/>
+					<xs:element name="Esito" type="sg:EsitoBaseType"/>
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleConDenomType" minOccurs="0"/>
+					<xs:element name="DatiAttivazione" type="sg:DatiAttivazioneBaseType" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" type="xs:anySimpleType" fixed="VT1" use="required"/>
+				<xs:attribute name="COD_FLUSSO" type="xs:anySimpleType" fixed="0150" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

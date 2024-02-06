@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:pk1="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_PK1/v1"
+	 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1"
+	 targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_PK1/v1"
+	 id="XMLSchema1"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1" schemaLocation="StruttureGenerali.xsd"/>
+	<xs:complexType name="FlussoPK1.0050Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaVenditoreGestoreType"/>
+					<xs:element name="DatiTecnici" type="sg:DatiTecniciBaseType"/>
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleBaseType"/>
+					<xs:element name="DatiSwitching" type="pk1:DatiSwitchingType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" type="xs:anySimpleType" fixed="PK1" use="required"/>
+				<xs:attribute name="COD_FLUSSO" type="xs:anySimpleType" fixed="0050" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FlussoPK1.0150Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaVenditoreGestoreCPOpzType"/>
+					<xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+					<xs:element name="Esito" type="sg:EsitoBaseType" minOccurs="0"/>
+					<xs:element name="DatiTecnici" type="sg:DatiTecniciBaseType" minOccurs="0"/>
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleBaseType" minOccurs="0"/>
+					<xs:element name="DataSalvaguardia" type="pk1:DataSalvaguardiaType" minOccurs="0"/>
+					<xs:element name="DatiCRPP" type="pk1:DatiCRPPType" minOccurs="0"/>
+					<xs:element name="RisoluzioneContrattualeTIMOE" type="pk1:RisoluzioneContrattualeTIMOEType" minOccurs="0"/>
+					<xs:element name="DatiControparteCommerciale" type="pk1:DatiControparteCommercialeType" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" type="xs:anySimpleType" fixed="PK1" use="required"/>
+				<xs:attribute name="COD_FLUSSO" type="xs:anySimpleType" fixed="0150" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FlussoPK1.0051Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaVenditoreGestoreCPType"/>
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleSoloDenomType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" type="xs:anySimpleType" fixed="PK1" use="required"/>
+				<xs:attribute name="COD_FLUSSO" type="xs:anySimpleType" fixed="0051" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="FlussoPK1.0151Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaVenditoreGestoreCPOpzType"/>
+					<xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+					<xs:element name="Esito" type="sg:EsitoBaseType" minOccurs="0"/>
+					<xs:element name="DatiTecnici" type="sg:DatiTecniciBaseType" minOccurs="0"/>
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleConDenomType" minOccurs="0"/>
+					<xs:element name="DatiCRPP" type="pk1:DatiCRPPType" minOccurs="0"/>
+					<xs:element name="RisoluzioneContrattualeTIMOE" type="pk1:RisoluzioneContrattualeTIMOEType" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" type="xs:anySimpleType" fixed="PK1" use="required"/>
+				<xs:attribute name="COD_FLUSSO" type="xs:anySimpleType" fixed="0151" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DATA_DECORRENZA" type="pk1:GGMMAAAAType"/>
+	<xs:element name="DATA_SALVAGUARDIA" type="pk1:GGMMAAAAType"/>
+	<xs:element name="RISOLUZIONE_CONTRATTUALE_TIMOE" type="pk1:SINOType"/>
+
+	<!-- precheck evo -->
+	<xs:simpleType name="GGMMAAAAType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/(19|20)\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Scientific5dType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[+-]?\d{5}([Ee])([+]?(\d{2})|[-]([0][0-9]|[1][0-3]))"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SINOType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([sS][iI]|[nN][oO]){1}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="DatiSwitchingType">
+		<xs:sequence>
+			<xs:element ref="pk1:DATA_DECORRENZA"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataSalvaguardiaType">
+		<xs:sequence>
+			<xs:element ref="pk1:DATA_SALVAGUARDIA" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RisoluzioneContrattualeTIMOEType">
+		<xs:sequence>
+			<xs:element ref="pk1:RISOLUZIONE_CONTRATTUALE_TIMOE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiCRPPType">
+		<xs:sequence>
+			<xs:element name="CRPP_MM_F1" type="pk1:Scientific5dType" minOccurs="0"/>
+			<xs:element name="CRPP_MM_F2" type="pk1:Scientific5dType" minOccurs="0"/>
+			<xs:element name="CRPP_MM_F3" type="pk1:Scientific5dType" minOccurs="0"/>
+			<xs:element name="CRPP_MM1_F1" type="pk1:Scientific5dType" minOccurs="0"/>
+			<xs:element name="CRPP_MM1_F2" type="pk1:Scientific5dType" minOccurs="0"/>
+			<xs:element name="CRPP_MM1_F3" type="pk1:Scientific5dType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiControparteCommercialeType">
+		<xs:sequence>
+			<xs:element name="PIVA_CONTROPARTE_COMMERCIALE" type="sg:CodiceFiscaleType"/>
+			<xs:element name="RAG_SOC_CONTR_COMM" type="sg:String255"/>
+			<xs:element name="EMAIL_CONTR_COMM" type="sg:String255"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

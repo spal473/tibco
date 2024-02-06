@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_PKG2/v1"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_PKG2/v1"
+	xmlns:sgas="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.2"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.4"
+	elementFormDefault="qualified">
+
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.4" schemaLocation="StruttureGenerali_v1_4.xsd" />
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.2" schemaLocation="StruttureGas_v1_2.xsd" />
+	
+	<!-- Flusso Notifica Aggiornamento Anagrafica -->
+
+	<complexType name="FlussoPKG2.0200Type" >
+		<complexContent>
+			<extension base="sg:FlussoTypeAbstract">
+				<sequence>
+					<element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaGestoreCPUtenteType"/>
+					<element name="DatiTecnici" type="sgas:DatiTecniciBaseType"/>
+					<element name="ClienteFinale" type="sg:ClienteFinaleConDenomType"/>            
+				</sequence>        
+				<attribute name="COD_SERVIZIO" use="required" fixed="PKG2"/>
+				<attribute name="COD_FLUSSO" use="required" fixed="0200"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<!-- Flusso Ammissibilita Notifica -->
+
+	<complexType name="FlussoPKG2.0250Type" >
+		<complexContent>
+			<extension base="sg:FlussoTypeAbstract">
+				<sequence>
+					<element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaGestoreCPUtenteCPOpzType"/>
+					<element name="DatiTecnici" type="sgas:DatiTecniciBaseType"/>
+					<element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+				</sequence>        
+				<attribute name="COD_SERVIZIO" use="required" fixed="PKG2"/>
+				<attribute name="COD_FLUSSO" use="required" fixed="0250"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<!-- Flusso Default Response -->
+	
+	<complexType name="FlussoPKG2.RESPType" >
+		<complexContent>
+			<extension base="sg:FlussoTypeAbstract">
+				<sequence>
+					<element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaGestoreCPUtenteCPOpzType"/>
+					<element name="Esito" type="sg:DefaultEsitoType"/>
+				</sequence>        
+				<attribute name="COD_SERVIZIO" use="required" fixed="PKG2"/>
+				<attribute name="COD_FLUSSO" use="required" fixed="RESP"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+</schema>

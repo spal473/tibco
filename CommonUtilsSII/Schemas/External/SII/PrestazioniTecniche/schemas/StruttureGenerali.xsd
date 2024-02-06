@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1"
+    elementFormDefault="qualified"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1"
+>
+  
+  
+  <xs:element name="Flusso" type ="sg:FlussoTypeAbstract" />
+  <xs:complexType name="FlussoTypeAbstract" abstract="true" />
+
+  <xs:element name="PIVA_VENDITORE" type="sg:PartitaIVAUEType"/>
+  <xs:element name="PIVA_DISTRIBUTORE" type="sg:PartitaIVAUEType"/>
+  <xs:element name="PIVA_GESTORE" type="sg:PartitaIVAUEType"/>
+  <xs:element name="PIVA_UTENTE" type="sg:PartitaIVAUEType"/>
+  <xs:element name="CP_GESTORE" type="sg:ProtocolloSIIType"/>
+  <xs:element name="CP_DISTRIBUTORE" type="sg:ProtocolloSIIType"/>
+  <xs:element name="CP_VENDITORE" type="sg:ProtocolloSIIType"/>
+  <xs:element name="CP_UTENTE" type="sg:ProtocolloSIIType"/>
+ 
+  <!-- Codice identificatvo del POD -->
+  <xs:element name="COD_POD" type="sg:CodicePODType" />
+  <xs:simpleType name="CodicePODType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value=".{14}.?"/>  
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="DatiTecniciBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:COD_POD" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="EsitoBaseType">
+    <xs:sequence>
+      <xs:element name="ESITO" type="sg:EsitoBoolType"/>
+      <xs:element name="COD_ESITO" type="sg:CodCausaleType" minOccurs="0"/>
+      <xs:element name="DETTAGLIO_ESITO" type="sg:String255" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AmmissibilitaBaseType">
+    <xs:sequence>
+      <xs:element name="VERIFICA_AMM" type="sg:EsitoBoolType"/>
+      <xs:element name="COD_CAUSALE" type="sg:CodCausaleType" minOccurs="0"/>
+      <xs:element name="MOTIVAZIONE" type="sg:String255" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="PartitaIVAUEType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="14"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CodiceFiscaleType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="16"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+
+  <xs:simpleType name="AAAAMMType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{4}[0-1]\d"></xs:pattern>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="AAMMType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{2}[0-1]\d"></xs:pattern>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ProtocolloSIIType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="15"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="EsitoBoolType">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"></xs:minInclusive>
+      <xs:maxInclusive value="1"></xs:maxInclusive>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CodCausaleType">
+    <xs:restriction base="xs:string">
+      <xs:length value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="String100">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="100"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="String255">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="255"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!--  VENDITORE   -  GESTORE-->
+  <xs:complexType name="IdentificativiRichiestaVenditoreGestoreType">
+    <xs:sequence>
+      <xs:element ref="sg:PIVA_VENDITORE"/>
+      <xs:element ref="sg:PIVA_GESTORE" />
+      <xs:element ref="sg:CP_VENDITORE" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaVenditoreGestoreCPOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:IdentificativiRichiestaVenditoreGestoreType">
+        <xs:sequence>
+          <xs:element ref ="sg:CP_GESTORE" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaVenditoreGestoreCPType">
+    <xs:complexContent>
+      <xs:extension base="sg:IdentificativiRichiestaVenditoreGestoreType">
+        <xs:sequence>
+          <xs:element ref="sg:CP_GESTORE" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  
+  <!--  GESTORE - VENDITORE  -->
+  <xs:complexType name="IdentificativiRichiestaGestoreVenditoreType">
+    <xs:sequence>
+      <xs:element ref="sg:PIVA_VENDITORE"/>
+      <xs:element ref="sg:PIVA_GESTORE" />
+      <xs:element ref="sg:CP_GESTORE" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaGestoreVenditoreCPOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:IdentificativiRichiestaGestoreVenditoreType">
+        <xs:sequence>
+          <xs:element ref ="sg:CP_VENDITORE" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaGestoreVenditoreCPType">
+    <xs:complexContent>
+      <xs:extension base="sg:IdentificativiRichiestaGestoreVenditoreType">
+        <xs:sequence>
+          <xs:element ref="sg:CP_VENDITORE" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  
+  <!--  GESTORE   -  DISTRIBUTORE-->
+  <xs:complexType name="IdentificativiRichiestaGestoreDistributoreType">
+    <xs:sequence>
+      <xs:element ref="sg:PIVA_DISTRIBUTORE"/>
+      <xs:element ref="sg:PIVA_GESTORE" />
+      <xs:element ref="sg:CP_GESTORE" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaGestoreDistributoreCPOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:IdentificativiRichiestaGestoreDistributoreType">
+        <xs:sequence>
+          <xs:element ref ="sg:CP_DISTRIBUTORE" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaGestoreDistributoreCPType">
+    <xs:complexContent>
+      <xs:extension base="sg:IdentificativiRichiestaGestoreDistributoreType">
+        <xs:sequence>
+          <xs:element ref="sg:CP_DISTRIBUTORE" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  
+  
+  <!--  DISTRIBUTORE - GESTORE-->
+  <xs:complexType name="IdentificativiRichiestaDistributoreGestoreType">
+    <xs:sequence>
+      <xs:element ref="sg:PIVA_DISTRIBUTORE"/>
+      <xs:element ref="sg:PIVA_GESTORE" />
+      <xs:element ref="sg:CP_DISTRIBUTORE" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaDistributoreGestoreCPOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:IdentificativiRichiestaDistributoreGestoreType">
+        <xs:sequence>
+          <xs:element ref ="sg:CP_GESTORE" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaDistributoreGestoreCPType">
+    <xs:complexContent>
+      <xs:extension base="sg:IdentificativiRichiestaDistributoreGestoreType">
+        <xs:sequence>
+          <xs:element ref="sg:CP_GESTORE" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  
+  <!--  UDD   -  GESTORE-->
+  <xs:complexType name="IdentificativiRichiestaUDDGestoreType">
+    <xs:sequence>
+      <xs:element ref="sg:PIVA_UTENTE"/>
+      <xs:element ref="sg:PIVA_GESTORE" />
+      <xs:element ref="sg:CP_UTENTE" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaUDDGestoreCPOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:IdentificativiRichiestaUDDGestoreType">
+        <xs:sequence>
+          <xs:element ref ="sg:CP_GESTORE" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaUDDGestoreCPType">
+    <xs:complexContent>
+      <xs:extension base="sg:IdentificativiRichiestaUDDGestoreType">
+        <xs:sequence>
+          <xs:element ref="sg:CP_GESTORE" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  
+  <!--  GESTORE - UDD-->
+  <xs:complexType name="IdentificativiRichiestaGestoreUDDType">
+    <xs:sequence>
+      <xs:element ref="sg:PIVA_UTENTE"/>
+      <xs:element ref="sg:PIVA_GESTORE" />
+      <xs:element ref="sg:CP_GESTORE" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaGestoreUDDCPOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:IdentificativiRichiestaGestoreUDDType">
+        <xs:sequence>
+          <xs:element ref ="sg:CP_UTENTE" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaGestoreUDDCPType">
+    <xs:complexContent>
+      <xs:extension base="sg:IdentificativiRichiestaGestoreUDDType">
+        <xs:sequence>
+          <xs:element ref="sg:CP_UTENTE" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleBaseType">
+    <xs:sequence>
+      <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleBaseType" minOccurs="1" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleSoloDenomType">
+    <xs:sequence>
+      <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleSoloDenomType" minOccurs="1" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDenomType">
+    <xs:sequence>
+      <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleConDenomType" minOccurs="1" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  
+  <xs:complexType name="AnagraficaClienteFinaleBaseType" >
+    <xs:sequence>
+      <xs:element name="CF" type="sg:CodiceFiscaleType" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="PIVA" type="sg:PartitaIVAUEType" minOccurs="0" maxOccurs="1" />
+      <xs:element name="CF_STRANIERO" type="sg:EsitoBoolType" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="AnagraficaClienteFinaleSoloDenomType" >
+    <xs:sequence>
+      <xs:element name="NOME" type="sg:String255" minOccurs="0" maxOccurs="1" />
+      <xs:element name="COGNOME" type="sg:String255" minOccurs="0" maxOccurs="1" />
+      <xs:element name="RAGIONE_SOCIALE_DENOMINAZIONE" type="sg:String255" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="AnagraficaClienteFinaleConDenomType" >
+    <xs:complexContent>
+      <xs:extension base="sg:AnagraficaClienteFinaleBaseType">
+        <xs:sequence>
+          <xs:element name="NOME" type="sg:String255" minOccurs="0" maxOccurs="1" />
+          <xs:element name="COGNOME" type="sg:String255" minOccurs="0" maxOccurs="1" />
+          <xs:element name="RAGIONE_SOCIALE_DENOMINAZIONE" type="sg:String255" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DefaultEsitoType">
+    <xs:sequence>
+      <xs:element name="Esito" type="sg:EsitoBoolType"/>
+      <xs:element name="CodCausale" type="sg:CodCausaleType" minOccurs="0"/>
+      <xs:element name="Motivazione" type="sg:String255" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiPraticaType">
+    <xs:sequence>  
+      <xs:element name="IdOperatore" type="xs:integer" minOccurs="0"/>
+      <xs:element name="DataRicezioneRichiesta" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="IdPratica" type="xs:integer"/>
+      <xs:element name="IdProtocollo" type="sg:ProtocolloSIIType" minOccurs="0"/>
+      <xs:element name="EsitoAmm" type="sg:EsitoBoolType" minOccurs="0"/>
+      <xs:element name="CodicePod" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiWorkflowType">
+    <xs:sequence>  
+      <xs:element name="UriPdc" type="xs:string" minOccurs="0"/>
+      <xs:element name="IdPdc" type="xs:integer" minOccurs="0"/>
+      <xs:element name="Versione" type="xs:integer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+ 

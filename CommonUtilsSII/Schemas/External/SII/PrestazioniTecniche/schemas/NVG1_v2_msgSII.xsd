@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_NVG1/v2"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_NVG1/v2" schemaLocation="NVG1_v2.xsd"/>
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12" schemaLocation="StruttureGenerali_v1_12.xsd"/>
+	
+	<!-- ************** NVG1:0200 ************** --> 
+	
+	<complexType name="NotificaRifiutoVolturaMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:NotificaRifiutoVolturaRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:NotificaRifiutoVolturaDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaRifiutoVolturaRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:NotificaRifiutoVolturaAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaRifiutoVolturaAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="NVG1" />
+					<element name="Operazione" type="string" fixed="NVG1.0200" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaRifiutoVolturaDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoNVG1.0200Type" />
+		</sequence>
+	</complexType>
+
+	<!-- ************** NVG1:0200 ************** -->
+	
+	<!-- ************** NVG1:0201 ************** -->
+	
+	<complexType name="AmmissibilitaNotificaMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:AmmissibilitaNotificaRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:AmmissibilitaNotificaDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaNotificaRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:AmmissibilitaNotificaAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaNotificaAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="NVG1" />
+					<element name="Operazione" type="string" fixed="NVG1.0201" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaNotificaDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoNVG1.0201Type" />
+		</sequence>
+	</complexType>
+	
+	<!-- ************** NVG1:0201 ************** -->
+	
+</schema>

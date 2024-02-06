@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+        elementFormDefault="qualified"
+        targetNamespace="http://www.sii.acquirenteunico.it/SMG1EsternoJobs">
+
+    <xs:element name="NotificaSMG1Request" />
+    	 
+    <xs:element name="NotificaSMG1Response" />
+    
+    <xs:element name="GenFileTardiviSMG1Request" >
+    	 <xs:complexType>
+            <xs:sequence>
+                <xs:element name="TIPOLOGIA" type="xs:string" minOccurs="0" />
+                <xs:element name="PIVA_UDD" type="xs:string" minOccurs="0" />
+                <xs:element name="PIVA_DISTRIBUTORE" type="xs:string" minOccurs="0" />
+                <xs:element name="ANNO_MESE" type="xs:string" minOccurs="0" />
+                <xs:element name="ID_RICHIESTA" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    	 
+    <xs:element name="GenFileTardiviSMG1Response" >
+    	<xs:complexType>
+            <xs:sequence>
+                <xs:element name="Errore" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+                
+</xs:schema>

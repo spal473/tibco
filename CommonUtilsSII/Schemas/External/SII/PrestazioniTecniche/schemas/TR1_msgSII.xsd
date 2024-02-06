@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_TR1/v1"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_TR1/v1" 
+		schemaLocation="TR1.xsd"/>
+
+	<complexType name="aggiornamentoTrackingMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:aggiornamentoTrackingRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:aggiornamentoTrackingDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="aggiornamentoTrackingRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:aggiornamentoTrackingAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="aggiornamentoTrackingAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="TR1"/>
+					<element name="Operazione" type="string" fixed="TR1.0200"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="aggiornamentoTrackingDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoTR1.0200Type"/>
+		</sequence>
+	</complexType>
+	
+	
+	<complexType name="ammissibilitaAggiornamentoMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:ammissibilitaAggiornamentoRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:ammissibilitaAggiornamentoDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ammissibilitaAggiornamentoRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:ammissibilitaAggiornamentoAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ammissibilitaAggiornamentoAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="TR1"/>
+					<element name="Operazione" type="string" fixed="TR1.0250"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ammissibilitaAggiornamentoDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoTR1.0250Type"/>
+		</sequence>
+	</complexType>
+	
+</schema>

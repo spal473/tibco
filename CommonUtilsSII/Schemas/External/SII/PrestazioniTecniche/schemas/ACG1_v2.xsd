@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_ACG1/v2"
+  xmlns:sgas="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.6"
+  xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.8"
+  xmlns:saoc="http://www.acquirenteunico.it/schemas/SII_AU/StruttureAOCGas/v2.0">
+  
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.6" schemaLocation="StruttureGas_v1_6.xsd" />
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.8" schemaLocation="StruttureGenerali_v1_8.xsd" />
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureAOCGas/v2.0" schemaLocation="StruttureAOCGas_v2_0.xsd" />
+  
+  <!-- ************** FLUSSI **************** -->
+  
+  <xs:complexType name="FlussoACG1.0050Type" >
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreType"/>
+          <xs:element name="DatiRichiesta" type="saoc:DatiRichiestaType"/>
+          <xs:element name="DatiTecnici" type="saoc:DatiTecniciTipoPDROpzType"/>
+          <xs:element name="ClienteFinale" type="saoc:ClienteFinaleType"/>
+          <xs:element name="ReferenteClienteFinale" type="saoc:ReferenteClienteFinaleType" minOccurs="0"/>
+          <xs:element name="DatiCommerciali" type="saoc:DatiCommercialiType" minOccurs="0"/>
+          <xs:element name="ServizioEnergetico" type="saoc:ServizioEnergeticoType"/>
+          <xs:element name="DatiContratto" type="saoc:DatiContrattoType" minOccurs="0"/>
+          <xs:element name="Motivazione" type="saoc:MotivazioneType" minOccurs="0"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="ACG1"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0050"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="FlussoACG1.0100Type" >
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreCPOpzType"/>
+          <xs:element name="DatiTecnici" type="sgas:DatiTecniciBaseType"/>
+          <xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="ACG1"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0100"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+</xs:schema>

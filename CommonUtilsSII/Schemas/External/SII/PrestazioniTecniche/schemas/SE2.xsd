@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SE2/v1"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.5"
+	xmlns:sel="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.3"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SE2/v1">
+	
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.5"	schemaLocation="StruttureGenerali_v1_5.xsd"/>
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.3" schemaLocation="StruttureEl_v1_3.xsd"/>
+	
+	<!-- ************** FLUSSI **************** -->
+	
+	<!-- *************** 0050 ***************** -->
+	
+	<xs:complexType name="FlussoSE2.0050Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreGestoreCPType" />
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType" />
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleBaseType"/>            
+					<xs:element name="DatiSwitching" type="sel:DatiSwitchingInoltroType"/>            
+					<xs:element name="Autocertificazioni" type="sg:AutocertificazioniBaseType"/>            
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="SE2" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0050" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- *************** 0100 ***************** -->
+	
+	<xs:complexType name="FlussoSE2.0100Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreCPOpzGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType"/>
+					<xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+					<xs:element name="Dati_TIMOE_6_4" type="sel:DatiTimoe6-4BaseType" minOccurs="0"/>
+					<xs:element name="Dati_TIMOE_14_1" type="sel:DatiTimoe14-1Type" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="SE2" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0100" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- *************** RESP ***************** --> 
+
+	<xs:complexType name="FlussoSE2.RESPType" >
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreCPOpzGestoreCPType"/>
+					<xs:element name="Esito" type="sg:DefaultEsitoType"/>
+				</xs:sequence>        
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="SE2"/>
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="RESP"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+</xs:schema>

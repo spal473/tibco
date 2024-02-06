@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VS1/v2"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.6"
+	xmlns:sel="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.4"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VS1/v2">
+	
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.6"	schemaLocation="StruttureGenerali_v1_6.xsd"/>
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.4" schemaLocation="StruttureEl_v1_4.xsd" />
+	
+	<!-- ************** FLUSSI **************** -->
+	
+	<!-- *************** 0050 ***************** -->
+	
+	<xs:complexType name="FlussoVS1.0050Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreCPGestoreType" />
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciCompletiType" />
+					<xs:element name="DatiPrestazione" type="sel:DatiPrestazioneType"/>            
+					<xs:element name="DatiCommerciali" type="sel:DatiCommercialiType" minOccurs="0"/>
+					<xs:element name="Settlement" type="sel:SettlementType" minOccurs="0"/>
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleBaseType" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="VS1" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0050" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- *************** 0100 ***************** -->
+	
+	<xs:complexType name="FlussoVS1.0100Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreCPGestoreCPOpzType" />
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType" />
+					<xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType" />
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="VS1" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0100" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- *************** 0200 ***************** -->
+	
+	<xs:complexType name="FlussoVS1.0200Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreCPGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType"/>
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleCompletoObbType"/>
+					<xs:element name="ReferenteClienteFinale" type="sg:ReferenteClienteFinaleBaseType" minOccurs="0"/>
+					<xs:element name="DatiCommerciali" type="sg:DatiCommercialiType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="VS1" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0200" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- *************** RESP ***************** --> 
+	
+	<xs:complexType name="FlussoVS1.RESPType" >
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreCPGestoreCPType"/>
+					<xs:element name="Esito" type="sg:DefaultEsitoType"/>
+				</xs:sequence>        
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="VS1"/>
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="RESP"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+</xs:schema>

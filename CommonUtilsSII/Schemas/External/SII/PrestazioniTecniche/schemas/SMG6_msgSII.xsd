@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SMG6/v1"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.9"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SMG6/v1" schemaLocation="SMG6.xsd"/>
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.9"	schemaLocation="StruttureGenerali_v1_9.xsd"/>
+
+	<!-- SMG6.0040 -->
+	
+	<complexType name="RichiestaTrasmissioneFileMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:RichiestaTrasmissioneFileRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:RichiestaTrasmissioneFileDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="RichiestaTrasmissioneFileRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:RichiestaTrasmissioneFileAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="RichiestaTrasmissioneFileAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="SMG6"/>
+					<element name="Operazione" type="string" fixed="SMG6.0040"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="RichiestaTrasmissioneFileDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoSMG6.0040Type"/>
+		</sequence>
+	</complexType>
+	
+	<!-- SMG6.0101 -->
+	
+	<complexType name="AmmissibilitaTrasmissioneFileMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:AmmissibilitaTrasmissioneFileRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:AmmissibilitaTrasmissioneFileDatiSIIType"/>
+					<element name="Allegati" type="msgSII:AllegatoSingoloType" minOccurs="0" maxOccurs="1"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaTrasmissioneFileRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:AmmissibilitaTrasmissioneFileAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaTrasmissioneFileAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="SMG6"/>
+					<element name="Operazione" type="string" fixed="SMG6.0101"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="AmmissibilitaTrasmissioneFileDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoSMG6.0101Type"/>
+		</sequence>
+	</complexType>
+	
+	<!-- SMG6.0200 -->
+	
+	<complexType name="NotificaDisponibilitaDatiMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:NotificaDisponibilitaDatiRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:NotificaDisponibilitaDatiDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaDisponibilitaDatiRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:NotificaDisponibilitaDatiAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaDisponibilitaDatiAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="SMG6"/>
+					<element name="Operazione" type="string" fixed="SMG6.0200"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="NotificaDisponibilitaDatiDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoSMG6.0200Type"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="AllegatoSingoloType">
+		<complexContent>
+			<restriction base="msgSII:AllegatiType">
+				<sequence>
+					<element name="Allegato" type="msgSII:AllegatoType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+</schema>

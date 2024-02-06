@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_ABG1/v1"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+	
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+	
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_ABG1/v1" schemaLocation="ABG1.xsd"/>
+
+	<complexType name="RichiestaAggiornamentoAbbinamentoMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:RichiestaAggiornamentoAbbinamentoRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:RichiestaAggiornamentoAbbinamentoDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="RichiestaAggiornamentoAbbinamentoRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:RichiestaAggiornamentoAbbinamentoAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="RichiestaAggiornamentoAbbinamentoAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="ABG1"/>
+					<element name="Operazione" type="string" fixed="ABG1.0050"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="RichiestaAggiornamentoAbbinamentoDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoABG1.0050Type"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="AmmissibilitaRichiestaAbbinamentoMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:AmmissibilitaRichiestaAbbinamentoRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:AmmissibilitaRichiestaAbbinamentoDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaRichiestaAbbinamentoRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:AmmissibilitaRichiestaAbbinamentoAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaRichiestaAbbinamentoAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="ABG1"/>
+					<element name="Operazione" type="string" fixed="ABG1.0100"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType> 
+	<complexType name="AmmissibilitaRichiestaAbbinamentoDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoABG1.0100Type"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="NotificaRichiestaAggiornamentoMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:NotificaRichiestaAggiornamentoRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:NotificaRichiestaAggiornamentoDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaRichiestaAggiornamentoRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:NotificaRichiestaAggiornamentoAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaRichiestaAggiornamentoAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="ABG1"/>
+					<element name="Operazione" type="string" fixed="ABG1.0200"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType> 
+	<complexType name="NotificaRichiestaAggiornamentoDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoABG1.0200Type"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="EsitoAbbinamentoMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:EsitoAbbinamentoRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:EsitoAbbinamentoDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="EsitoAbbinamentoRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:EsitoAbbinamentoAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="EsitoAbbinamentoAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="ABG1"/>
+					<element name="Operazione" type="string" fixed="ABG1.0150"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType> 
+	<complexType name="EsitoAbbinamentoDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoABG1.0150Type"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="RettificaEsitoAbbinamentoMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:RettificaEsitoAbbinamentoRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:RettificaEsitoAbbinamentoDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="RettificaEsitoAbbinamentoRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:RettificaEsitoAbbinamentoAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="RettificaEsitoAbbinamentoAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="ABG1"/>
+					<element name="Operazione" type="string" fixed="ABG1.0151"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType> 
+	<complexType name="RettificaEsitoAbbinamentoDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoABG1.0151Type"/>
+		</sequence>
+	</complexType>
+	
+</schema>

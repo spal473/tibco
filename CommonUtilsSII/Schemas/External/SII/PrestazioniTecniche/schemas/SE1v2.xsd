@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.5"
+	 xmlns:sel="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.3"
+	 xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SE1/v2"
+	 targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SE1/v2"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.5" schemaLocation="StruttureGenerali_v1_5.xsd"/>
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.3" schemaLocation="StruttureEl_v1_3.xsd"/>
+
+	<!-- ************** FLUSSI **************** -->
+	<xs:complexType name="FlussoSE1.0050Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreType"/>
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType"/>
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleBaseType"/>
+					<xs:element name="DatiSwitching" type="sel:DatiSwitchingRichType"/>
+					<xs:element name="Autocertificazioni" type="sg:AutocertificazioniBaseType"/>
+					<xs:element name="DatiCommerciali" type="dat:DatiCommercialiType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" type="xs:anySimpleType" fixed="SE1" use="required"/>
+				<xs:attribute name="COD_FLUSSO" type="xs:anySimpleType" fixed="0050" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- *************** 0100 ***************** -->
+	<xs:complexType name="FlussoSE1.0100Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreCPOpzType"/>
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType"/>
+					<xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" type="xs:anySimpleType" fixed="SE1" use="required"/>
+				<xs:attribute name="COD_FLUSSO" type="xs:anySimpleType" fixed="0100" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- *************** 0200 ***************** -->
+	<xs:complexType name="FlussoSE1.0200Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType"/>
+					<xs:element name="Dati_TIMOE_6_4" type="sel:DatiTimoe6-4Type"/>
+					<xs:element name="Dati_TIMOE_14_1" type="sel:DatiTimoe14-1Type" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" type="xs:anySimpleType" fixed="SE1" use="required"/>
+				<xs:attribute name="COD_FLUSSO" type="xs:anySimpleType" fixed="0200" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- *************** RESP ***************** 
+
+	<xs:complexType name="FlussoSE1.RESPType" >
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreCPType"/>
+					<xs:element name="Esito" type="sg:DefaultEsitoType"/>
+				</xs:sequence>        
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="SE1"/>
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="RESP"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+-->
+	<xs:simpleType name="String35obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,35}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="COD_OFFERTA" type="dat:String35obb"/>
+	<xs:complexType name="DatiCommercialiType">
+		<xs:sequence>
+			<xs:element ref="dat:COD_OFFERTA" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- *************** 0050 ***************** -->
+</xs:schema>

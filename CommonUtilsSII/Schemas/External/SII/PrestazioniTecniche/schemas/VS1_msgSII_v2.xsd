@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VS1/v2"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VS1/v2" schemaLocation="VS1_v2.xsd"/>
+	
+	<!-- ************** VS1:0050 ************** --> 
+	
+	<complexType name="TrasmissioneVariazioneStatoMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:TrasmissioneVariazioneStatoRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:TrasmissioneVariazioneStatoDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="TrasmissioneVariazioneStatoRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:TrasmissioneVariazioneStatoAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="TrasmissioneVariazioneStatoAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="VS1" />
+					<element name="Operazione" type="string" fixed="VS1.0050" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="TrasmissioneVariazioneStatoDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoVS1.0050Type" />
+		</sequence>
+	</complexType>
+
+	<!-- ************** VS1:0050 ************** -->
+	
+	<!-- ************** VS1:0100 ************** -->
+	
+	<complexType name="AmmissibilitaTrasmissioneMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:AmmissibilitaTrasmissioneRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:AmmissibilitaTrasmissioneDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaTrasmissioneRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:AmmissibilitaTrasmissioneAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaTrasmissioneAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="VS1" />
+					<element name="Operazione" type="string" fixed="VS1.0100" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaTrasmissioneDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoVS1.0100Type" />
+		</sequence>
+	</complexType>
+	
+	<!-- ************** VS1:0100 ************** -->
+	
+	<!-- ************** VS1:0200 ************** -->
+	
+	<complexType name="NotificaAnagraficaClienteFinaleMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:NotificaAnagraficaClienteFinaleRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:NotificaAnagraficaClienteFinaleDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaAnagraficaClienteFinaleRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:NotificaAnagraficaClienteFinaleAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaAnagraficaClienteFinaleAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="VS1" />
+					<element name="Operazione" type="string" fixed="VS1.0200" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaAnagraficaClienteFinaleDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoVS1.0200Type" />
+		</sequence>
+	</complexType>
+	
+	<!-- ************** VS1:0200 ************** -->
+
+
+	<!-- ************** VS1:RESP ************** --> 
+	
+	<complexType name="DefaultResponseMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:DefaultResponseRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:DefaultResponseDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="DefaultResponseRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:DefaultResponseAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="DefaultResponseAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="VS1"/>
+					<element name="Operazione" type="string" fixed="VS1.RESP"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType> 
+	<complexType name="DefaultResponseDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoVS1.RESPType"/>
+		</sequence>
+	</complexType>
+	
+	<!-- ************** VS1:RESP ************** -->
+	
+</schema>

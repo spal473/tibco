@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12"
+	 targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:simpleType name="MercatoEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="L"/>
+			<xs:enumeration value="T"/>
+			<xs:enumeration value="S"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AlfaNum1ObbType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="CodicePodType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S.{13}.?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodicePdrType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[\da-zA-Z]{14}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SettoreType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G"/>
+			<xs:enumeration value="E"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodiceComuneIstatType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ToponimoType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S.{0,29}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ViaType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S.{0,99}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CivicoType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S.{0,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ComuneType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S.{0,99}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LocalitaType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S.{0,99}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CapType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S.{0,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodProvinciaType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NazioneType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{0,99}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ContrattoConnessioneType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipologiaRisoluzioneEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CAE1"/>
+			<xs:enumeration value="CAE2"/>
+			<xs:enumeration value="CAE3"/>
+			<xs:enumeration value="CAE4"/>
+			<xs:enumeration value="CAE5"/>
+			<xs:enumeration value="CAE6"/>
+			<xs:enumeration value="CAE7"/>
+			<xs:enumeration value="CAE8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipologiaRisoluzioneType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S{1,4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ResidenzaEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="01"/>
+			<xs:enumeration value="02"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String2ObbType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S{1,2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String3ObbType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S{1,3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoFornituraStringType">
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- Tipo Variazione: N: Nuovo - C: Cessato -->
+	<xs:simpleType name="TipoVariazioneNCType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="N"/>
+			<xs:enumeration value="C"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoVariazioneAddDelType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ADD"/>
+			<xs:enumeration value="DEL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PartitaIVAUEType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S.{0,15}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodiceFiscaleType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S.{0,15}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SettMerceolType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S{5,8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AAAAType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(19|20)\d{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AAAAMMType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(19|20)\d{2}(0[1-9]|1[012])"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AAMMType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2}(0[1-9]|1[012])"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MMType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[1-9]|1[012])"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GGType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0[1-9]|[12][0-9]|3[01])"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GGMMAAAAType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(((0[1-9]|[12]\d|3[01])/(01|03|05|07|08|10|12)/(19|20)\d{2})|((0[1-9]|[12]\d|30)/(04|06|09|11)/(19|20)\d{2})|((0[1-9]|1\d|2[0-8])/02/(19|20)\d{2})|(29/02/(19|20)([02468][048]|[13579][26])))"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ListGGMMAAAAType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((((0[1-9]|[12]\d|3[01])/(01|03|05|07|08|10|12)/(19|20)\d{2})|((0[1-9]|[12]\d|30)/(04|06|09|11)/(19|20)\d{2})|((0[1-9]|1\d|2[0-8])/02/(19|20)\d{2})|(29/02/(19|20)([02468][048]|[13579][26]))),)*(((0[1-9]|[12]\d|3[01])/(01|03|05|07|08|10|12)/(19|20)\d{2})|((0[1-9]|[12]\d|30)/(04|06|09|11)/(19|20)\d{2})|((0[1-9]|1\d|2[0-8])/02/(19|20)\d{2})|(29/02/(19|20)([02468][048]|[13579][26])))"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DateGGMMAAAAType">
+		<xs:restriction base="sg:ListGGMMAAAAType"/>
+	</xs:simpleType>
+	<xs:simpleType name="AAMMGGType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((\d{2}(01|03|05|07|08|10|12)(0[1-9]|[12]\d|3[01]))|(\d{2}(04|06|09|11)(0[1-9]|[12]\d|30))|(\d{2}02(0[1-9]|1\d|2[0-8]))|(([02468][048]|[13579][26])0229))"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ProtocolloSIIType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S.{0,14}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ListProtocolloSIIType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([^\s,][^,]{0,14})(,[^\s,][^,]{0,14})*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EsitoBoolType">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EsitoSiNoType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="S"/>
+			<xs:enumeration value="N"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodCausaleType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S{3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodCausaleAnnullamentoType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S{1,4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DimFileKBType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[1-9]\d{0,8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!--  <xs:simpleType name="Double10Type">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d(\.\d{1,9})|\d{1,2}(\.\d{1,8})|\d{1,3}(\.\d{1,7})|\d{1,4}(\.\d{1,6})|\d{1,5}(\.\d{1,5})|\d{1,6}(\.\d{1,4})|\d{1,7}(\.\d{1,3})|\d{1,8}(\.\d{1,2})|\d{1,9}(\.\d{1})|\d{1,10}" />
+    </xs:restriction>
+  </xs:simpleType>
+ -->
+	<xs:simpleType name="DoublePositiveType">
+		<xs:restriction base="xs:double">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numeric2">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d?)|0)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numeric3">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,2})|0)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numeric4">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,3})|0)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numeric5">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,4})|0)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numeric6">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,5})|0)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numeric7">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,6})|0)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numeric8">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,7})|0)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numeric9">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,8})|0)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numeric10">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,9})|0)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numeric11">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,10})|0)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numeric12">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,11})|0)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Numeric15">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,14})|0)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Digit9Obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,9}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Digit3Obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Digit4Obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Digit5Obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{1,5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Digit1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Decimal_2_2_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,1})|0)(\.\d{1,2})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Decimal_3_2_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,2})|0)(\.\d{1,2})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AliquotaDecimale">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([1-9]\d?|0)(\.\d{1,5})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AliquotaIntera">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,1})|0)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Decimal_2_5_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([1-9]\d?|0)(\.\d{1,5})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Decimal_6_3_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,5})|0)(\.\d{1,3})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Decimal_7_3_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,6})|0)(\.\d{1,3})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Decimal_8_3_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,7})|0)(\.\d{1,3})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Decimal_9_3_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,8})|0)(\.\d{1,3})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Decimal_10_3_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,9})|0)(\.\d{1,3})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Decimal_11_3_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,10})|0)(\.\d{1,3})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Decimal_12_3_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,11})|0)(\.\d{1,3})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Decimal_12_6_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,11})|0)(\.\d{1,6})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Decimal_15_2_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,14})|0)(\.\d{1,2})?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ListDecimal_15_2_Type">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(([1-9]\d{0,14})|0)(\.\d{1,2})?(,(([1-9]\d{0,14})|0)(\.\d{1,2})?)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FormatoFileType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\w{1,4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TipoDatoType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\w"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ListString1">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(\w,)*\w"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String10">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String10obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String15obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,15}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String20">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String17obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,17}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String20obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String30">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String30obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,30}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String35obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,35}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String50">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String50obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,50}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String100">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String100obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,100}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String200">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String200obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,200}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String255">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String255obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,255}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String4obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String3obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S{1,3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String6obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String25obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,25}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String27obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,27}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String4000obb">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String7obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String8obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,8}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String5obb">
+		<xs:restriction base="xs:string">
+			<xs:pattern value=".{1,5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="YNType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="Y|N|y|n"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SiNoType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="SI|NO"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

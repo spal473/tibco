@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+    xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VTG6/v1"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+    
+    <include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+    
+    <import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VTG6/v1" schemaLocation="VTG6.xsd"/>
+    
+    <!-- ************** VTG6:0200 ************** --> 
+    
+    <complexType name="InvioComunicazioneVolturaMessaggioSIIType">
+        <complexContent>
+            <restriction base="msgSII:MessaggioSIIType">
+                <sequence>
+                    <element name="RichiestaSII" type="msgSII:InvioComunicazioneVolturaRichiestaSIIType" />
+                    <element name="DatiSII" type="msgSII:InvioComunicazioneVolturaDatiSIIType" />
+                </sequence>
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="InvioComunicazioneVolturaRichiestaSIIType">
+        <complexContent>
+            <restriction base="msgSII:RichiestaSIIType">
+                <sequence>
+                    <element name="AzioneRichiesta" type="msgSII:InvioComunicazioneVolturaAzioneRichiestaType" />
+                    <element name="Erogatore" type="msgSII:UtenteType" />
+                    <element name="Fruitore" type="msgSII:UtenteType" />
+                </sequence>
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="InvioComunicazioneVolturaAzioneRichiestaType">
+        <complexContent>
+            <restriction base="msgSII:AzioneRichiestaType">
+                <sequence>
+                    <element name="Servizio" type="string" fixed="VTG6" />
+                    <element name="Operazione" type="string" fixed="VTG6.0200" />
+                </sequence>
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="InvioComunicazioneVolturaDatiSIIType">
+        <sequence>
+            <element name="Flusso" type="dat:FlussoVTG6.0200Type" />
+        </sequence>
+    </complexType>
+    
+    <!-- ************** VTG6:0200 ************** -->
+    
+    <!-- ************** VTG6:0201 ************** -->
+    
+    <complexType name="AmmissibilitaInvioComunicazioneMessaggioSIIType">
+        <complexContent>
+            <restriction base="msgSII:MessaggioSIIType">
+                <sequence>
+                    <element name="RichiestaSII" type="msgSII:AmmissibilitaInvioComunicazioneRichiestaSIIType" />
+                    <element name="DatiSII" type="msgSII:AmmissibilitaInvioComunicazioneDatiSIIType" />
+                </sequence>
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="AmmissibilitaInvioComunicazioneRichiestaSIIType">
+        <complexContent>
+            <restriction base="msgSII:RichiestaSIIType">
+                <sequence>
+                    <element name="AzioneRichiesta" type="msgSII:AmmissibilitaInvioComunicazioneAzioneRichiestaType" />
+                    <element name="Erogatore" type="msgSII:UtenteType" />
+                    <element name="Fruitore" type="msgSII:UtenteType" />
+                </sequence>
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="AmmissibilitaInvioComunicazioneAzioneRichiestaType">
+        <complexContent>
+            <restriction base="msgSII:AzioneRichiestaType">
+                <sequence>
+                    <element name="Servizio" type="string" fixed="VTG6" />
+                    <element name="Operazione" type="string" fixed="VTG6.0201" />
+                </sequence>
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="AmmissibilitaInvioComunicazioneDatiSIIType">
+        <sequence>
+            <element name="Flusso" type="dat:FlussoVTG6.0201Type" />
+        </sequence>
+    </complexType>
+    
+    <!-- ************** VTG6:0201 ************** -->
+       
+</schema>

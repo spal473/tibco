@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SE2/v1"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SE2/v1" schemaLocation="SE2.xsd"/>
+	
+	<!-- ************** SE2:0050 ************** --> 
+	
+	<complexType name="NotificaRichiestaSwitchingMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:NotificaRichiestaSwitchingRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:NotificaRichiestaSwitchingDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaRichiestaSwitchingRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:NotificaRichiestaSwitchingAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaRichiestaSwitchingAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="SE2" />
+					<element name="Operazione" type="string" fixed="SE2.0050" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaRichiestaSwitchingDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoSE2.0050Type" />
+		</sequence>
+	</complexType>
+
+	<!-- ************** SE2:0050 ************** -->
+	
+	<!-- ************** SE2:0100 ************** -->
+	
+	<complexType name="AmmissibilitaRichiestaSwitchingMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:AmmissibilitaRichiestaSwitchingRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:AmmissibilitaRichiestaSwitchingDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaRichiestaSwitchingRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:AmmissibilitaRichiestaSwitchingAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaRichiestaSwitchingAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="SE2" />
+					<element name="Operazione" type="string" fixed="SE2.0100" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaRichiestaSwitchingDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoSE2.0100Type" />
+		</sequence>
+	</complexType>
+	
+	<!-- ************** SE2:0100 ************** -->
+
+	<!-- ************** SE2:RESP ************** --> 
+
+	<complexType name="DefaultResponseMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:DefaultResponseRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:DefaultResponseDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="DefaultResponseRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:DefaultResponseAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="DefaultResponseAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="SE2"/>
+					<element name="Operazione" type="string" fixed="SE2.RESP"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType> 
+	<complexType name="DefaultResponseDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoSE2.RESPType"/>
+		</sequence>
+	</complexType>
+
+	<!-- ************** SE2:RESP ************** -->
+	
+</schema>

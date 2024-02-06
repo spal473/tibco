@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:sel="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.1"
+	 xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.3"
+	 targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.1"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.3" schemaLocation="StruttureGenerali_v1_3.xsd"/>
+
+	<!-- Codice identificatvo del POD -->
+	<xs:element name="COD_POD" type="sel:CodicePODType"/>
+	<xs:simpleType name="CodicePODType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S.{13}.?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="DatiTecniciBaseType">
+		<xs:sequence>
+			<xs:element ref="sel:COD_POD"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciUbicazioneBaseType">
+		<xs:complexContent>
+			<xs:extension base="sel:DatiTecniciBaseType">
+				<xs:sequence>
+					<xs:element ref="sg:ISTAT" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="TIPOLOGIA_VOLTURA" type="sel:TipologiaVolturaType"/>
+	<xs:simpleType name="TipologiaVolturaType">
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="TIPO_CONTRATTO" type="sel:TipoContrattoType"/>
+	<xs:simpleType name="TipoContrattoType">
+		<xs:restriction base="xs:string">
+			<xs:length value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="CATEGORIA_CLIENTE" type="sel:CategoriaClienteType"/>
+	<xs:simpleType name="CategoriaClienteType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S.{0,2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="SETT_MERCEOLOGICO" type="sel:SettMerceolType"/>
+	<xs:simpleType name="SettMerceolType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S.{0,7}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodContrattoDispacciamentoType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\S.{0,5}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="VolturaDatiAttivazioneBaseType">
+		<xs:sequence>
+			<xs:element ref="sel:TIPOLOGIA_VOLTURA"/>
+			<xs:element ref="sel:TIPO_CONTRATTO"/>
+			<xs:element ref="sel:CATEGORIA_CLIENTE" minOccurs="0"/>
+			<xs:element ref="sel:SETT_MERCEOLOGICO" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VolturaAccettazioneDatiAttivazioneType">
+		<xs:sequence>
+			<xs:element name="COD_CONTR_DISP" type="sel:CodContrattoDispacciamentoType"/>
+			<xs:element name="PIVA_UTENTE" type="sg:PartitaIVAUEType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VolturaDatiAttivazioneNotificaType">
+		<xs:complexContent>
+			<xs:extension base="sel:VolturaDatiAttivazioneBaseType">
+				<xs:sequence>
+					<xs:element name="DATA_DECORRENZA" type="sg:GGMMAAAAType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VolturaDatiAttivazioneRichiestaType">
+		<xs:complexContent>
+			<xs:extension base="sel:VolturaDatiAttivazioneBaseType">
+				<xs:sequence>
+					<xs:element name="DATA_RICHIESTA" type="sg:GGMMAAAAType"/>
+					<xs:element name="DATA_DECORRENZA" type="sg:GGMMAAAAType"/>
+					<xs:element name="COD_CONTR_DISP" type="sel:CodContrattoDispacciamentoType"/>
+					<xs:element name="PIVA_CONTROPARTE_COMMERCIALE" type="sg:PartitaIVAUEType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VolturaDatiAttivazioneComunicazioneType">
+		<xs:complexContent>
+			<xs:extension base="sel:VolturaDatiAttivazioneBaseType">
+				<xs:sequence>
+					<xs:element name="COD_CONTR_DISP_ENTRANTE" type="sel:CodContrattoDispacciamentoType"/>
+					<xs:element name="PIVA_UTENTE_ENTRANTE" type="sg:PartitaIVAUEType"/>
+					<xs:element name="COD_CONTR_DISP_USCENTE" type="sel:CodContrattoDispacciamentoType"/>
+					<xs:element name="PIVA_UTENTE_USCENTE" type="sg:PartitaIVAUEType"/>
+					<xs:element name="DATA_DECORRENZA" type="sg:GGMMAAAAType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VolturaDatiAttivazioneEsitoType">
+		<xs:sequence>
+			<xs:element name="COD_CONTR_DISP" type="sel:CodContrattoDispacciamentoType"/>
+			<xs:element name="DATA_DECORRENZA" type="sg:GGMMAAAAType"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

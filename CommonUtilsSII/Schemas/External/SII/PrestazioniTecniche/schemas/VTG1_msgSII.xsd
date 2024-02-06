@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VTG1/v1"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VTG1/v1" schemaLocation="VTG1.xsd"/>
+	
+	<!-- ************** VTG1:0050 ************** --> 
+	
+	<complexType name="RichiestaAttivazioneContrattualeMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:RichiestaAttivazioneContrattualeRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:RichiestaAttivazioneContrattualeDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="RichiestaAttivazioneContrattualeRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:RichiestaAttivazioneContrattualeAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="RichiestaAttivazioneContrattualeAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="VTG1" />
+					<element name="Operazione" type="string" fixed="VTG1.0050" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="RichiestaAttivazioneContrattualeDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoVTG1.0050Type" />
+		</sequence>
+	</complexType>
+
+	<!-- ************** VTG1:0050 ************** -->
+	
+	<!-- ************** VTG1:0100 ************** -->
+	
+	<complexType name="AmmissibilitaRichiestaMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:AmmissibilitaRichiestaRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:AmmissibilitaRichiestaDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaRichiestaRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:AmmissibilitaRichiestaAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaRichiestaAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="VTG1" />
+					<element name="Operazione" type="string" fixed="VTG1.0100" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaRichiestaDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoVTG1.0100Type" />
+		</sequence>
+	</complexType>
+	
+	<!-- ************** VTG1:0100 ************** -->
+	
+	<!-- ************** VTG1:0150 ************** -->
+	
+	<complexType name="EsitoAttivazioneContrattualeMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:EsitoAttivazioneContrattualeRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:EsitoAttivazioneContrattualeDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="EsitoAttivazioneContrattualeRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:EsitoAttivazioneContrattualeAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="EsitoAttivazioneContrattualeAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="VTG1" />
+					<element name="Operazione" type="string" fixed="VTG1.0150" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="EsitoAttivazioneContrattualeDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoVTG1.0150Type" />
+		</sequence>
+	</complexType>
+	
+	<!-- ************** VTG1:0150 ************** -->
+
+</schema>

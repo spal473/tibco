@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_CS1/v1"
+  xmlns:sel="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.6"
+  xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.9"
+  xmlns:cs="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_CS1/v1">
+  
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.6" schemaLocation="StruttureEl_v1_6.xsd" />
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.9" schemaLocation="StruttureGenerali_v1_9.xsd"/>
+
+  <!-- ************** FLUSSI **************** -->
+  
+  <xs:complexType name="FlussoCS1.0050Type">
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreType"/>
+          <xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType"/>
+          <xs:element name="ClienteFinale" type="sg:ClienteFinaleBaseType"/>
+          <xs:element name="DatiConfigurazione" type="cs:DatiConfigurazioneType"/>
+          <xs:element name="VisualizzazioneDati" type="cs:VisualizzazioneDatiType" minOccurs="0"/>
+          <xs:element name="ConfigurazioneDati" type="cs:ConfigurazioneDatiType" minOccurs="0"/>
+          <xs:element name="NumeroFasce" type="cs:NumeroFasceType" minOccurs="0"/>
+          <xs:element name="FasceOrarieSettimanale" type="cs:FasceOrarieSettimanaleType" minOccurs="0"/>
+          <xs:element name="FasceOrarieFestivi" type="cs:FasceOrarieFestiviType" minOccurs="0"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="CS1"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0050"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="FlussoCS1.0100Type">
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreCPOpzType"/>
+          <xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType"/>
+          <xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="CS1"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0100"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="FlussoCS1.0150Type">
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreCPType"/>
+          <xs:element name="DatiConfigurazione" type="cs:DatiConfigurazioneType"/>
+          <xs:element name="EsitoConfigurazione" type="cs:EsitoConfigurazioneType" minOccurs="0"/>
+          <xs:element name="EsitoVisualizzazione" type="cs:EsitoVisualizzazioneType" minOccurs="0"/>
+          <xs:element name="OrarioEsecuzioneConfigurazione" type="cs:OrarioEsecuzioneConfigurazioneType" minOccurs="0"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="CS1"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0150"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+    
+  <xs:complexType name="OrarioEsecuzioneConfigurazioneType">
+    <xs:sequence>
+      <xs:element name="ORARIO_CONFIGURAZIONE" type="cs:GGMMAAAAHHMMSSType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="GGMMAAAAHHMMSSType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(((0[1-9]|[12]\d|3[01])(01|03|05|07|08|10|12)(19|20)\d{2})|((0[1-9]|[12]\d|30)(04|06|09|11)(19|20)\d{2})|((0[1-9]|1\d|2[0-8])02(19|20)\d{2})|(2902/(19|20)([02468][048]|[13579][26])))([01][0-9]|[2][0-3])([0-5][0-9])([0-5][0-9])"/>
+    </xs:restriction>
+  </xs:simpleType>
+    
+  <xs:complexType name="EsitoConfigurazioneType">
+    <xs:sequence>
+      <xs:element name="ESITO_CONFIG" type="sg:EsitoBoolType" />
+      <xs:element name="COD_ESITO_CONFIG" type="sg:CodCausaleType" minOccurs="0"/>
+      <xs:element name="DETTAGLIO_ESITO_CONFIG" type="sg:String255" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="EsitoVisualizzazioneType">
+    <xs:sequence>
+      <xs:element name="ESITO_VISUAL" type="sg:EsitoBoolType" />
+      <xs:element name="COD_ESITO_VISUAL" type="sg:CodCausaleType" minOccurs="0"/>
+      <xs:element name="DETTAGLIO_ESITO_VISUAL" type="sg:String255" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiConfigurazioneType">
+    <xs:sequence>
+      <xs:element name="COD_CONTR_DISP" type="cs:AlfaNum6bbType"/>
+      <xs:element name="DATA_DEC_CONFIG" type="sg:DateGGMMAAAAType"/>
+      <xs:element name="TIPO_OPERAZIONE" type="cs:AlfaNum1bbType"/>
+      <xs:element name="PROT_PRESTAZIONE" type="cs:AlfaNum15bbType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="VisualizzazioneDatiType">
+    <xs:sequence>
+      <xs:element name="VIS_FASCE" type="sg:EsitoSiNoType"/>
+      <xs:element name="VIS_CODCLI" type="sg:EsitoSiNoType"/>
+      <xs:element name="VIS_VENDITORE" type="sg:EsitoSiNoType"/>
+      <xs:element name="VIS_TELEFONOV" type="sg:EsitoSiNoType" />
+      <xs:element name="VIS_DATAINICONTR" type="sg:EsitoSiNoType" />
+      <xs:element name="VIS_DATAINIZIOFREEZING" type="sg:EsitoSiNoType" />
+      <xs:element name="VIS_MESSAGGICLIENTE" type="sg:EsitoSiNoType" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ConfigurazioneDatiType">
+    <xs:sequence>
+      <xs:element name="VAL_CODCLI" type="cs:AlfaNum16nnbbType"  minOccurs="0"/>
+      <xs:element name="VAL_VENDITORE" type="cs:AlfaNum16nnbbType"  minOccurs="0"/>
+      <xs:element name="VAL_TELEFONOV" type="cs:AlfaNum16nnbbType"  minOccurs="0"/>
+      <xs:element name="VAL_DATAINICONTR" type="cs:DateGGMMAAAATypeOpz" minOccurs="0"/>
+      <xs:element name="VAL_DATAINIZIOFREEZING" type="sg:DateGGMMAAAAType"  minOccurs="0"/>
+      <xs:element name="VAL_MESSAGGIO_1" type="cs:AlfaNum16nnbbType"  minOccurs="0"/>
+      <xs:element name="VAL_MESSAGGIO_2" type="cs:AlfaNum16nnbbType"  minOccurs="0"/>
+      <xs:element name="VAL_MESSAGGIO_3" type="cs:AlfaNum16nnbbType"  minOccurs="0"/>
+      <xs:element name="VAL_MESSAGGIO_4" type="cs:AlfaNum16nnbbType"  minOccurs="0"/>
+      <xs:element name="VAL_MESSAGGIO_5" type="cs:AlfaNum16nnbbType"  minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="NumeroFasceType">
+    <xs:sequence>
+      <xs:element name="NUM_FASCE" type="cs:NumeroFasceValType"  minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="FasceOrarieSettimanaleType">
+    <xs:sequence>
+      <xs:element name="F_LUNEDI" type="cs:AlfaNum49bbType" />
+      <xs:element name="F_MARTEDI" type="cs:AlfaNum49bbType"  />
+      <xs:element name="F_MERCOLEDI" type="cs:AlfaNum49bbType"  />
+      <xs:element name="F_GIOVEDI" type="cs:AlfaNum49bbType"  />
+      <xs:element name="F_VENERDI" type="cs:AlfaNum49bbType"   />
+      <xs:element name="F_SABATO" type="cs:AlfaNum49bbType"   />
+      <xs:element name="F_DOMENICA" type="cs:AlfaNum49bbType"   />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="FasceOrarieFestiviType">
+    <xs:sequence>
+      <xs:element name="DATA_FESTIVO" type="xs:string" fixed="00/00" />
+      <xs:element name="F_FESTIVO" type="cs:AlfaNum49bbType"  />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:simpleType name="AlfaNum6bbType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\S{1,6}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="AlfaNum1bbType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\S{1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="AlfaNum15bbType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\S{1,15}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="AlfaNum16nnbbType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\S.{0,15}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="AlfaNum16bbType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\S{1,16}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="AlfaNum49bbType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\S{1,49}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="DateGGMMAAAATypeOpz">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="((((0[1-9]|[12]\d|3[01])/(01|03|05|07|08|10|12)/(19|20)\d{2})|((0[1-9]|[12]\d|30)/(04|06|09|11)/(19|20)\d{2})|((0[1-9]|1\d|2[0-8])/02/(19|20)\d{2})|(29/02/(19|20)([02468][048]|[13579][26])))-)*(((0[1-9]|[12]\d|3[01])/(01|03|05|07|08|10|12)/(19|20)\d{2})|((0[1-9]|[12]\d|30)/(04|06|09|11)/(19|20)\d{2})|((0[1-9]|1\d|2[0-8])/02/(19|20)\d{2})|(29/02/(19|20)([02468][048]|[13579][26])))|."/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="NumeroFasceValType">
+    <xs:restriction base="xs:string">
+
+    </xs:restriction>
+  </xs:simpleType>
+  
+  
+</xs:schema>

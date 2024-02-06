@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_PKG1/v2"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_PKG1/v2" schemaLocation="PKG1.xsd"/>
+
+	<complexType name="richiestaPrecheckMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:richiestaPrecheckRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:richiestaPrecheckDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="richiestaPrecheckRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:richiestaPrecheckAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="richiestaPrecheckAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="PKG1"/>
+					<element name="Operazione" type="string" fixed="PKG1.0050"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="richiestaPrecheckDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoPKG1.0050Type"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="esitoAmmissibilitaRichiestaPrecheckMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:esitoAmmissibilitaRichiestaPrecheckRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:esitoAmmissibilitaRichiestaPrecheckDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="esitoAmmissibilitaRichiestaPrecheckRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:esitoAmmissibilitaRichiestaPrecheckAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="esitoAmmissibilitaRichiestaPrecheckAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="PKG1"/>
+					<element name="Operazione" type="string" fixed="PKG1.0150"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="esitoAmmissibilitaRichiestaPrecheckDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoPKG1.0150Type"/>
+		</sequence>
+	</complexType>
+	
+</schema>

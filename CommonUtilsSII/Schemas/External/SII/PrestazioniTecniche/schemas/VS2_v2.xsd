@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VS2/v2"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.9"
+	xmlns:sel="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.8"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VS2/v2">
+	
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.9"	schemaLocation="StruttureGenerali_v1_9.xsd"/>
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.8" schemaLocation="StruttureEl_v1_8.xsd" />
+	
+	<xs:complexType name="ClienteFinaleType">
+		<xs:sequence>
+			<!--<xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleCompletoOpzType"/>-->
+			<xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleConDenomTelType"/>
+		<xs:element name="Esazione" type="sg:IndirizzoCAPObbType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="ClienteFinaleCompletoType">
+		<xs:sequence>
+			<!--<xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleCompletoOpzType"/>-->
+			<xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleConDenomTelType"/>
+			<xs:element name="Residenza" type="sg:DatiResidenzaBaseType" minOccurs="0"/>
+			<xs:element name="Esazione" type="sg:IndirizzoCAPObbType"/>
+			<xs:element name="InformazioneTributi" type="sg:InformazioneTributiType"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- ************** FLUSSI **************** -->
+	
+	<!-- *************** 0200 ***************** -->
+	
+	<xs:complexType name="FlussoVS2.0200Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteGestoreCPType" />
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciCompletiType" />
+					<xs:element name="DatiPrestazione" type="sel:DatiPrestazioneUDDType"/>            
+					<xs:element name="DatiMisuratore2G" type="sel:DatiMisuratore2GType" minOccurs="0"/>            
+					<xs:element name="DatiCommerciali" type="sel:DatiCommercialiType" minOccurs="0"/>
+					<xs:element name="Settlement" type="sel:SettlementType" minOccurs="0"/>
+					<xs:element name="ClienteFinale" type="dat:ClienteFinaleType" minOccurs="0"/>
+					<xs:element name="BonusSociale" type="sel:BonusSocialeType" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="VS2" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0200" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- *************** 0201 ***************** -->
+	
+	<xs:complexType name="FlussoVS2.0201Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType"/>
+					<xs:element name="ClienteFinale" type="dat:ClienteFinaleCompletoType"/>
+					<xs:element name="ReferenteClienteFinale" type="sg:ReferenteClienteFinaleBaseType" minOccurs="0"/>
+					<xs:element name="DatiCommerciali" type="sg:DatiCommercialiType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="VS2" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0201" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- *************** 0210 ***************** -->
+	
+	<xs:complexType name="FlussoVS2.0210Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreCPType" />
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType" />
+					<xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType" />
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="VS2" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0210" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+</xs:schema>

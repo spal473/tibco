@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureAOCGas/v2.0"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.8"
+  xmlns:sgas="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.6"
+  xmlns:saoc="http://www.acquirenteunico.it/schemas/SII_AU/StruttureAOCGas/v2.0">
+
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.8"
+    schemaLocation="StruttureGenerali_v1_8.xsd"/>
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.6"
+    schemaLocation="StruttureGas_v1_6.xsd"/>
+
+  <xs:complexType name="InformazioneTributiAddizRegType">
+    <xs:sequence>
+      <!-- non posso riutilizzare il ref ALIQUOTA IVA perchè è numeric50 -->
+      <xs:element name="ALIQUOTA_IVA" type="sg:Numeric2"/>
+      <xs:element name="ALIQUOTA_ACCISE" type="sg:Decimal_2_5_Type"/>
+      <xs:element ref="sg:ADDIZ_REGIONALE"/>
+      <xs:element ref="sg:ALTRE_INFORMAZIONI" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ServizioEnergeticoAnagraficaType">
+    <xs:sequence>
+      <!-- non posso riutilizzare il ref ALIQUOTA IVA perchè è numeric50 -->
+      <xs:element ref="sg:PIVA" minOccurs="0"/>
+      <xs:element ref="sg:RAGIONE_SOCIALE_DENOMINAZIONE"/>
+      <xs:element ref="sg:TELEFONO" minOccurs="0"/>
+      <xs:element ref="sg:EMAIL" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleDatiFiscaliBaseType">
+    <xs:sequence>
+      <xs:element name="DatiFiscali" type="saoc:AnagraficaClienteFinaleBaseCFObbType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ReferenteClienteFinaleType">
+    <xs:sequence>
+      <xs:element name="REFERENTE" type="sg:SiNoType"/>
+      <xs:element name="Anagrafica" type="saoc:AnagraficaReferenteClienteFinaleEmailObbBaseType"
+        minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleType">
+    <xs:complexContent>
+      <xs:extension base="saoc:ClienteFinaleDatiFiscaliBaseType">
+        <xs:sequence>
+          <xs:element name="Anagrafica"
+            type="saoc:AnagraficaClienteFinaleConDenomEmailOpzTelOpzType" minOccurs="0"/>
+          <xs:element name="Fornitura" type="sg:IndirizzoCAPObbType" minOccurs="0"/>
+          <xs:element name="Residenza" type="saoc:ResidenzaOpzBaseType" minOccurs="0"/>
+          <xs:element name="Esazione" type="sg:IndirizzoCAPObbType" minOccurs="0"/>
+          <xs:element name="AnagraficaFatturazione"
+            type="saoc:AnagraficaClienteFinaleCFObbConDenomType" minOccurs="0"/>
+          <xs:element name="InformazioneTributi" type="saoc:InformazioneTributiAddizRegType"
+            minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ServizioEnergeticoType">
+    <xs:sequence>
+      <xs:element ref="sgas:EROG_SERVIZIO_ENERG"/>
+      <xs:element name="Anagrafica" type="saoc:ServizioEnergeticoAnagraficaType" minOccurs="0"/>
+      <xs:element name="Indirizzo" type="sg:IndirizzoCAPObbType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AnagraficaClienteFinaleBaseCFObbType">
+    <xs:sequence>
+      <xs:element ref="sg:CF"/>
+      <xs:element ref="sg:PIVA" minOccurs="0"/>
+      <xs:element ref="sg:CF_STRANIERO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AnagraficaClienteFinaleCFObbConDenomType">
+    <xs:complexContent>
+      <xs:extension base="saoc:AnagraficaClienteFinaleBaseCFObbType">
+        <xs:sequence>
+          <xs:element ref="sg:NOME" minOccurs="0"/>
+          <xs:element ref="sg:COGNOME" minOccurs="0"/>
+          <xs:element ref="sg:RAGIONE_SOCIALE_DENOMINAZIONE" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AnagraficaClienteFinaleConFiscDenomEmailTelType">
+    <xs:complexContent>
+      <xs:extension base="sg:AnagraficaClienteFinaleConDenomType">
+        <xs:sequence>
+          <xs:element ref="sg:EMAIL"/>
+          <xs:element ref="sg:TELEFONO" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AnagraficaClienteFinaleConDenomEmailOpzTelOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:AnagraficaClienteFinaleSoloDenomType">
+        <xs:sequence>
+          <xs:element ref="sg:EMAIL" minOccurs="0"/>
+          <xs:element ref="sg:TELEFONO" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AnagraficaReferenteClienteFinaleEmailObbBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:NOME" minOccurs="0"/>
+      <xs:element ref="sg:COGNOME" minOccurs="0"/>
+      <xs:element ref="sg:EMAIL" minOccurs="0"/>
+      <xs:element ref="sg:TELEFONO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="InformazioneTributiAddizProType">
+    <xs:complexContent>
+      <xs:extension base="sg:InformazioneTributiBaseType">
+        <xs:sequence>
+          <xs:element ref="sg:ADDIZ_PROVINCIALE"/>
+          <xs:element ref="sg:ADDIZ_COMUNALE"/>
+          <xs:element ref="sg:ALTRE_INFORMAZIONI" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ResidenzaOpzBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:RESIDENZA" minOccurs="0"/>
+      <xs:element ref="sg:DATA_VAL_RES" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiTecniciTipoPDROpzType">
+    <xs:complexContent>
+      <xs:extension base="sgas:DatiTecniciBaseType">
+        <xs:sequence>
+          <xs:element ref="sgas:TIPO_PDR" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:element name="TRATTAMENTO" type="saoc:TrattamentoType"/>
+  <xs:simpleType name="TrattamentoType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="M"/>
+      <xs:enumeration value="G"/>
+      <xs:enumeration value="Y"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="DatiPrestazionePdrPivaUtenteOpzType">
+    <xs:sequence>
+      <xs:element ref="sgas:COD_PRESTAZIONE"/>
+      <xs:element ref="sgas:PIVA_UTENTE" minOccurs="0"/>
+      <xs:element ref="sgas:DATA_ESECUZIONE"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiPrestazionePdrPivaDistrOpzType">
+    <xs:sequence>
+      <xs:element ref="sgas:COD_PRESTAZIONE"/>
+      <xs:element ref="sgas:PIVA_DISTRIBUTORE"/>
+      <xs:element ref="sgas:DATA_ESECUZIONE"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiTecniciType">
+    <xs:sequence>
+      <xs:element name="PdR" type="saoc:DatiTecniciPdRType"/>
+      <xs:element name="Potenza" type="saoc:DatiTecniciPotenzaType" minOccurs="0"/>
+      <xs:element name="IndirizzoUbicazione" type="sg:IndirizzoCAPObbType" minOccurs="0"/>
+      <xs:element name="IndirizzoFornitura" type="sg:IndirizzoCAPObbType" minOccurs="0"/>
+      <xs:element name="Misuratore" type="saoc:DatiTecniciMisuratoreType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiTecniciPdRType">
+    <xs:complexContent>
+      <xs:extension base="sgas:DatiTecniciBaseType">
+        <xs:sequence>
+          <xs:element ref="sgas:COD_REMI"/>
+          <xs:element ref="sgas:TIPO_PDR" minOccurs="0"/>
+          <xs:element ref="sgas:DISALIMENTABILITA"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DatiTecniciPotenzaType">
+    <xs:sequence>
+      <xs:element ref="sgas:POT_MAX_RIC"/>
+      <xs:element ref="sgas:POT_TOT_INST" minOccurs="0"/>
+      <xs:element ref="sgas:MAX_PRELIEVO_ORA"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <xs:complexType name="DatiTrattamentoSettlementType">
+    <xs:sequence>
+      <xs:element ref="saoc:TRATTAMENTO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiSettlementType">
+    <xs:sequence>
+      <xs:element ref="sgas:PREL_ANNUO_PREV"/>
+      <xs:element ref="sgas:COD_PROF_PREL_STD"/>
+      <xs:element ref="sgas:CAT_USO"/>
+      <xs:element ref="sgas:CLASSE_PRELIEVO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiTecniciMisuratoreType">
+    <xs:sequence>
+      <xs:element ref="sgas:MATR_MIS"/>
+      <xs:element ref="sgas:CLASSE_GRUPPO_MIS"/>
+      <xs:element ref="sgas:TIPO_MIS"/>
+      <xs:element ref="sgas:TELEGESTIONE" minOccurs="0"/>
+      <xs:element ref="sgas:PRE_CONV" minOccurs="0"/>
+      <xs:element ref="sgas:MATR_CONV" minOccurs="0"/>
+      <xs:element ref="sgas:N_CIFRE_CONV" minOccurs="0"/>
+      <xs:element ref="sgas:ANNO_FABB_CONV" minOccurs="0"/>
+      <xs:element ref="sgas:DATA_INST_CONV" minOccurs="0"/>
+      <xs:element ref="sgas:COEFF_CORR" minOccurs="0"/>
+      <xs:element ref="sgas:PRESS_MISURA" minOccurs="0"/>
+      <xs:element ref="sgas:ACC_MIS"/>
+      <xs:element ref="sgas:N_CIFRE_MIS"/>
+      <xs:element ref="sgas:ANNO_FAB_MIS"/>
+      <xs:element ref="sgas:DATA_INST_MIS"/>
+      <xs:element ref="sgas:GRUPPO_MIS_INT" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="BonusSocialeType">
+    <xs:sequence>
+      <xs:element ref="sgas:BONUS"/>
+      <xs:element ref="sgas:DATA_INIZIO" minOccurs="0"/>
+      <xs:element ref="sgas:DATA_FINE" minOccurs="0"/>
+      <xs:element ref="sgas:DATA_RINNOVO" minOccurs="0"/>
+      <xs:element ref="sgas:TIPO_BONUS" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiRichiestaType">
+    <xs:sequence>
+      <xs:element ref="sgas:TIPO_RICHIESTA"/>
+      <xs:element ref="sgas:DATA_ESECUZIONE"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="CodiceContrattoType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\S.{0,31}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="DatiCommercialiType">
+    <xs:complexContent>
+      <xs:extension base="saoc:DatiCommercialiBaseType">
+        <xs:sequence>
+          <xs:element ref="sg:CODICE_UFFICIO" minOccurs="0"/>
+          <xs:element ref="sg:PAGAMENTO_IVA" minOccurs="0"/>
+          <xs:element ref="sg:SETT_MERCEOLOGICO" minOccurs="0"/>
+          <xs:element name="CODICE_CONTRATTO" type="saoc:CodiceContrattoType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+
+  </xs:complexType>
+
+  <xs:complexType name="DatiCommercialiBaseType">
+    <xs:sequence>
+      <xs:element ref="sgas:TIPO_FORNITURA" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiContrattoType">
+    <xs:sequence>
+      <xs:element ref="sgas:DATA_INIZIO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MotivazioneType">
+    <xs:sequence>
+      <xs:element ref="sgas:MOTIVAZIONE"/>
+      <xs:element ref="sgas:DESCRIZIONE" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

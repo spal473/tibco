@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_UI2/v1"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_UI2/v1" schemaLocation="UI2.xsd"/>
+	
+	<!-- ************** UI2:0200 ************** -->
+	
+	<complexType name="NotificaAttivazioneServiziUltimaIstanzaMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:NotificaAttivazioneServiziUltimaIstanzaRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:NotificaAttivazioneServiziUltimaIstanzaDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaAttivazioneServiziUltimaIstanzaRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:NotificaAttivazioneServiziUltimaIstanzaAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaAttivazioneServiziUltimaIstanzaAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="UI2" />
+					<element name="Operazione" type="string" fixed="UI2.0200" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaAttivazioneServiziUltimaIstanzaDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoUI2.0200Type" />
+		</sequence>
+	</complexType>
+	
+	<!-- ************** UI2:0200 ************** -->
+	
+</schema>

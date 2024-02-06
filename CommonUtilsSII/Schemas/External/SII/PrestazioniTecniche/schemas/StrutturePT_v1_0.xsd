@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema 
+  targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/StrutturePT/v1.0"
+  elementFormDefault="qualified" 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:pt="http://www.acquirenteunico.it/schemas/SII_AU/StrutturePT/v1.0"
+  xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12">
+
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12" schemaLocation="StruttureGenerali_v1_12.xsd" />
+ 
+  <xs:element name="IMPORTO_MOROSITA" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="N_TENTATIVI" type="sg:Numeric2"/>
+  <xs:element name="FATTIBILITA_TECNICA" type="pt:YesNoType"/>
+  <xs:element name="COSTO" type="pt:Decimal_6_2_Type"/>
+  <xs:element name="DATA_RICHIESTA_CC" type="sg:GGMMAAAAType"/>
+  <xs:element name="DESCRIZIONE" type="sg:String255"/>
+  <xs:element name="IDENTIFICATIVO_PRATICA" type="pt:TipoPraticaType"/>
+  <xs:element name="COD_PRESTAZIONE" type="sg:String3ObbType"/>
+  <xs:element name="COD_CONTR_DISP" type="pt:CodContrattoDispacciamentoType"/>
+  <xs:element name="ESITO" type="pt:EsitoBoolType"/>
+  <xs:element name="DATA_ESECUZIONE" type="sg:GGMMAAAAType"/>
+  <xs:element name="COD_POD" type="pt:CodicePODType"/>
+  <xs:element name="COD_CAUSALE" type="pt:CodCausaleType"/>
+  
+  <xs:simpleType name="TipoPraticaType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SM"/>
+      <xs:enumeration value="RT"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="YesNoType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Y"/>
+      <xs:enumeration value="N"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="Decimal_6_2_Type">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(([1-9]\d{0,5})|0)(\.\d{1,2})?"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="EsitoBoolType">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="CodicePODType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\S.{13}.?"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="CodContrattoDispacciamentoType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\S.{0,5}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="CodCausaleType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\S{1,6}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  
+  <xs:complexType name="DatiPrestazioneBaseType">
+    <xs:sequence>
+      <xs:element ref="pt:COD_PRESTAZIONE"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiPrestazioneType">
+	<xs:complexContent>
+      <xs:extension base="pt:DatiPrestazioneBaseType">
+        <xs:sequence>
+          <xs:element ref="pt:COD_CONTR_DISP"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiPrestazioneMorositaType">
+	<xs:complexContent>
+      <xs:extension base="pt:DatiPrestazioneType">
+        <xs:sequence>
+          <xs:element name="Morosita" type="pt:MorositaType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiPrestazioneRichiestaType">
+	<xs:complexContent>
+      <xs:extension base="pt:DatiPrestazioneBaseType">
+        <xs:sequence>
+          <xs:element ref="pt:DATA_RICHIESTA_CC"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleType">
+    <xs:sequence>
+      <xs:element ref="sg:CF" minOccurs="0"/>
+      <xs:element ref="sg:PIVA" minOccurs="0"/>
+      <xs:element ref="sg:CF_STRANIERO" minOccurs="0"/>
+	  <xs:element ref="sg:TELEFONO" minOccurs="0"/>
+	  <xs:element ref="sg:EMAIL" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:CF" minOccurs="0"/>
+      <xs:element ref="sg:PIVA" minOccurs="0"/>
+      <xs:element ref="sg:CF_STRANIERO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MorositaType">
+    <xs:sequence>
+      <xs:element ref="pt:IMPORTO_MOROSITA" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TitolaritaType">
+    <xs:sequence>
+      <xs:element ref="pt:COD_CONTR_DISP"/>
+      <xs:element ref="sg:PIVA_UDD"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="PivaUtenteGestoreType">
+    <xs:sequence>
+      <xs:element ref="sg:PIVA_UTENTE"/>
+      <xs:element ref="sg:PIVA_GESTORE"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="PivaDistributoreGestoreType">
+    <xs:sequence>
+      <xs:element ref="sg:PIVA_DISTRIBUTORE"/>
+      <xs:element ref="sg:PIVA_GESTORE"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiDistributoreGestoreCPBaseType">
+	<xs:sequence>
+		<xs:element ref="sg:PIVA_DISTRIBUTORE"/>
+		<xs:element ref="sg:PIVA_GESTORE"/>
+		<xs:element ref="sg:CP_UTENTE" />
+		<xs:element ref="sg:CP_GESTORE" minOccurs="0"/>
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiUtenteGestoreCPBaseType">
+	<xs:sequence>
+		<xs:element ref="sg:PIVA_UTENTE"/>
+		<xs:element ref="sg:PIVA_GESTORE"/>
+		<xs:element ref="sg:CP_UTENTE" />
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiUtenteGestoreType">
+    <xs:sequence>
+		<xs:element ref="sg:PIVA_UTENTE"/>
+		<xs:element ref="sg:PIVA_GESTORE"/>
+        <xs:element ref="sg:CP_GESTORE" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiEsitoRiattivazioneUtenteGestoreType">
+	<xs:sequence>
+		<xs:element ref="sg:PIVA_UTENTE"/>
+		<xs:element ref="sg:PIVA_GESTORE"/>
+		<xs:element ref="sg:CP_UTENTE" minOccurs="0"/>
+		<xs:element ref="sg:CP_GESTORE" />
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaGestoreDistributoreCPType">
+	<xs:sequence>
+		<xs:element ref="sg:PIVA_UTENTE"/>
+		<xs:element ref="sg:PIVA_GESTORE"/>
+		<xs:element ref="sg:CP_GESTORE"/>
+		<xs:element ref="sg:CP_DISTRIBUTORE" minOccurs="0"/>
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaDistributoreGestoreBaseType">	
+	<xs:sequence>
+		<xs:element ref="sg:PIVA_DISTRIBUTORE"/>
+		<xs:element ref="sg:PIVA_GESTORE"/>
+        <xs:element ref="sg:CP_GESTORE" />
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaDistributoreGestoreUtenteType">	
+	<xs:sequence>
+		<xs:element ref="sg:PIVA_DISTRIBUTORE"/>
+		<xs:element ref="sg:PIVA_GESTORE"/>
+		<xs:element ref="sg:CP_UTENTE" />
+	</xs:sequence>
+  </xs:complexType>
+  
+
+  <xs:complexType name="IdentificativiRichiestaUtenteCPGestoreCPType">
+     <xs:sequence>
+		<xs:element ref="sg:PIVA_UTENTE"/>
+		<xs:element ref="sg:PIVA_GESTORE"/>
+		<xs:element ref="sg:CP_UTENTE" />
+        <xs:element ref="sg:CP_GESTORE" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+   <xs:complexType name="IdentificativiRichiestaUtenteGestoreCPOpzType">
+	<xs:sequence>
+		<xs:element ref="sg:PIVA_UTENTE"/>
+		<xs:element ref="sg:PIVA_GESTORE"/>
+		<xs:element ref="sg:CP_UTENTE" />
+		<xs:element ref="sg:CP_GESTORE"/>
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaDistributoreGestoreType">
+	<xs:sequence>	
+		<xs:element ref="sg:PIVA_DISTRIBUTORE"/>
+		<xs:element ref="sg:PIVA_GESTORE"/>
+		<xs:element ref="sg:CP_DISTRIBUTORE" minOccurs="0"/>
+		<xs:element ref="sg:CP_GESTORE"/>
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaDistrGestoreTrackType">
+	<xs:sequence>	
+		<xs:element ref="sg:PIVA_DISTRIBUTORE"/>
+		<xs:element ref="sg:PIVA_GESTORE"/>
+		<xs:element ref="sg:CP_DISTRIBUTORE"/>
+		<xs:element ref="sg:CP_GESTORE"/>
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IdentificativiRichiestaUtenteGestoreType">
+	<xs:sequence>
+		<xs:element ref="sg:PIVA_DISTRIBUTORE"/>
+		<xs:element ref="sg:PIVA_GESTORE"/>
+        <xs:element ref="sg:CP_GESTORE" />
+		<xs:element ref="sg:CP_UTENTE" minOccurs="0"/>
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="EsitoBaseType">
+	<xs:sequence>
+	   <xs:element ref="pt:DATA_ESECUZIONE" minOccurs="0"/>
+	   <xs:element ref="sg:ESITO"/>
+	   <xs:element ref="pt:COD_CAUSALE" minOccurs="0"/>
+	   <xs:element ref="sg:MOTIVAZIONE" minOccurs="0"/>
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="EsitoDistributoreType">
+	<xs:sequence>
+	  <xs:element ref="pt:DATA_ESECUZIONE" minOccurs="0"/>
+	  <xs:element ref="sg:ESITO"/>
+	  <xs:element ref="pt:COD_CAUSALE" minOccurs="0"/>
+	  <xs:element ref="sg:MOTIVAZIONE" minOccurs="0"/>
+	  <xs:element ref="pt:N_TENTATIVI" minOccurs="0"/>
+	  <xs:element ref="pt:FATTIBILITA_TECNICA" minOccurs="0"/>
+	  <xs:element ref="pt:COSTO" minOccurs="0"/>
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="EsitoRichiestaType">
+	<xs:sequence>
+		<xs:element ref="pt:DATA_ESECUZIONE"/>
+        <xs:element ref="sg:ESITO"/>
+		<xs:element ref="pt:COD_CAUSALE" minOccurs="0"/>
+		<xs:element ref="sg:MOTIVAZIONE" minOccurs="0"/>
+		<xs:element ref="pt:N_TENTATIVI" minOccurs="0"/>
+		<xs:element ref="pt:FATTIBILITA_TECNICA" minOccurs="0"/>
+		<xs:element ref="pt:COSTO" minOccurs="0"/>
+	</xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="EsitoGestoreUtenteType">
+     <xs:sequence>
+		<xs:element ref="pt:DATA_ESECUZIONE" minOccurs="0"/>
+        <xs:element ref="pt:ESITO"/>
+		<xs:element ref="pt:COD_CAUSALE" minOccurs="0"/>
+		<xs:element ref="sg:MOTIVAZIONE" minOccurs="0"/>
+		<xs:element ref="pt:N_TENTATIVI" minOccurs="0"/>
+		<xs:element ref="pt:FATTIBILITA_TECNICA" minOccurs="0"/>
+		<xs:element ref="pt:COSTO" minOccurs="0"/>
+     </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="EsitoGestoreDistributoreType">
+    <xs:sequence>
+      <xs:element ref="pt:ESITO"/>
+	  <xs:element ref="pt:COD_CAUSALE"/>
+	  <xs:element ref="sg:MOTIVAZIONE"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="EsitoRiattivazioneType">
+	<xs:sequence>
+	   <xs:element ref="pt:DATA_ESECUZIONE" minOccurs="0"/>
+	   <xs:element ref="pt:ESITO"/>
+	   <xs:element ref="pt:COD_CAUSALE" minOccurs="0"/>
+	   <xs:element ref="sg:MOTIVAZIONE" minOccurs="0"/>
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="TrackingType">
+    <xs:sequence>
+	  <xs:element ref="pt:COD_CAUSALE"/>
+	  <xs:element ref="pt:DESCRIZIONE"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiPraticaTecnicaType">
+    <xs:sequence>
+	  <xs:element ref="pt:IDENTIFICATIVO_PRATICA"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  
+  <xs:complexType name="DatiTecniciBaseType">
+    <xs:sequence>
+      <xs:element ref="pt:COD_POD"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="AmmissibilitaBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:VERIFICA_AMM"/>
+      <xs:element ref="sg:COD_CAUSALE" minOccurs="0"/>
+      <xs:element ref="sg:MOTIVAZIONE" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

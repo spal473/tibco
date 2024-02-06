@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VT3/v1"
+    xmlns:sel="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.1"
+    xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.3">
+  
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.1" schemaLocation="StruttureEl_v1_1.xsd" />
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.3" schemaLocation="StruttureGenerali_v1_3.xsd" />
+  
+<!-- ************** FLUSSI **************** -->
+
+  <xs:complexType name="FlussoVT3.0200Type" >
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaGestoreUDDType"/>
+          <xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType"/>
+          <xs:element name="ClienteFinale" type="sg:ClienteFinaleConDenomEIndirizziTelType"/>           
+          <xs:element name="DatiAttivazione" type="sel:VolturaDatiAttivazioneNotificaType"/>                                                      
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="VT3"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0200"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+</xs:schema>

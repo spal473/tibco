@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_UIG1/v1"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_UIG1/v1" schemaLocation="UIG1.xsd"/>
+	
+	<!-- ************** UIG1:0200 ************** -->
+	
+	<complexType name="NotificaAttivazioneUltimaIstanzaMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:NotificaAttivazioneUltimaIstanzaRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:NotificaAttivazioneUltimaIstanzaDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaAttivazioneUltimaIstanzaRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:NotificaAttivazioneUltimaIstanzaAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaAttivazioneUltimaIstanzaAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="UIG1" />
+					<element name="Operazione" type="string" fixed="UIG1.0200" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaAttivazioneUltimaIstanzaDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoUIG1.0200Type" />
+		</sequence>
+	</complexType>
+	
+	<!-- ************** UIG1:RESP ************** -->
+	
+	<complexType name="DefaultResponseMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:DefaultResponseRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:DefaultResponseDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="DefaultResponseRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:DefaultResponseAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="DefaultResponseAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="UIG1" />
+					<element name="Operazione" type="string" fixed="UIG1.RESP" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="DefaultResponseDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoUIG1.RESPType" />
+		</sequence>
+	</complexType>
+
+</schema>

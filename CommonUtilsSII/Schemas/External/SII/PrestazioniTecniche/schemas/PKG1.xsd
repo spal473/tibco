@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_PKG1/v2"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_PKG1/v2"
+	xmlns:sgas="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.2"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.4"
+	elementFormDefault="qualified">
+
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.4" schemaLocation="StruttureGenerali_v1_4.xsd" />
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.2" schemaLocation="StruttureGas_v1_2.xsd" />
+	
+	<complexType name="ClienteFinaleFiscaliIntegrazioneOpzType">
+		<sequence>
+			<element name="Anagrafica" type="sg:AnagraficaClienteFinaleBaseType"/>
+			<element name="Integrazione" type="sg:AnagraficaClienteFinaleSoloDenomType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="DatiControparteCommercialeType">
+		<sequence>
+			<element name="RAGIONE_SOCIALE_CONTROPARTECOMMERCIALE" type="sg:String255obb"/>
+			<element name="PIVA_CONTROPARTECOMMERCIALE" type="sg:PartitaIVAUEType"/>
+			<element name="POSTA_CERTIFICATA" type="sg:String255obb"/>
+		</sequence>
+	</complexType>
+	
+	<!-- Flusso Richiesta Precheck -->
+
+	<complexType name="FlussoPKG1.0050Type" >
+		<complexContent>
+			<extension base="sg:FlussoTypeAbstract">
+				<sequence>
+					<element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaVenditoreCPGestoreCPOpzType"/>
+					<element name="DatiTecnici" type="sgas:DatiTecniciBaseType"/>
+					<element name="ClienteFinale" type="dat:ClienteFinaleFiscaliIntegrazioneOpzType"/>            
+				</sequence>        
+				<attribute name="COD_SERVIZIO" use="required" fixed="PKG1"/>
+				<attribute name="COD_FLUSSO" use="required" fixed="0050"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<!-- Flusso Esito-Ammissibilita Richiesta Precheck -->
+
+	<complexType name="FlussoPKG1.0150Type" >
+		<complexContent>
+			<extension base="sg:FlussoTypeAbstract">
+				<sequence>
+					<element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaVenditoreCPGestoreCPOpzType"/>
+					<element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+					<element name="Esito" type="sg:EsitoBaseType" minOccurs="0"/>
+					<element name="DatiTecnici" type="sgas:DatiTecniciAnagraficaBaseType" minOccurs="0"/>
+					<element name="ClienteFinale" type="dat:ClienteFinaleFiscaliIntegrazioneOpzType" minOccurs="0"/>            
+					<element name="DatiControparteCommerciale" type="dat:DatiControparteCommercialeType" minOccurs="0"/>            
+				</sequence>        
+				<attribute name="COD_SERVIZIO" use="required" fixed="PKG1"/>
+				<attribute name="COD_FLUSSO" use="required" fixed="0150"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+</schema>

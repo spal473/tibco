@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_ACG1/v2"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.8"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+	
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+	
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_ACG1/v2" schemaLocation="ACG1_v2.xsd"/>
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.8" schemaLocation="StruttureGenerali_v1_8.xsd" />
+	
+	<complexType name="ComunicazioneAggiornamentoDatiRCUGASMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:ComunicazioneAggiornamentoDatiRCUGASRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:ComunicazioneAggiornamentoDatiRCUGASDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ComunicazioneAggiornamentoDatiRCUGASRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:ComunicazioneAggiornamentoDatiRCUGASAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ComunicazioneAggiornamentoDatiRCUGASAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="ACG1"/>
+					<element name="Operazione" type="string" fixed="ACG1.0050"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ComunicazioneAggiornamentoDatiRCUGASDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoACG1.0050Type"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="AmmissibilitaComunicazioneMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:AmmissibilitaComunicazioneRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:AmmissibilitaComunicazioneDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaComunicazioneRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:AmmissibilitaComunicazioneAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaComunicazioneAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="ACG1"/>
+					<element name="Operazione" type="string" fixed="ACG1.0100"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType> 
+	<complexType name="AmmissibilitaComunicazioneDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoACG1.0100Type"/>
+		</sequence>
+	</complexType>
+	
+</schema>

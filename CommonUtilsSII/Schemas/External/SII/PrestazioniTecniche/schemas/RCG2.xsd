@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_RCG2/v1"
+  xmlns:sgas="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.7"
+  xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.9">
+  
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.7" schemaLocation="StruttureGas_v1_7.xsd"/>
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.9" schemaLocation="StruttureGenerali_v1_9.xsd"/>
+  
+  <!-- ************** FLUSSI **************** -->
+  
+  <xs:complexType name="FlussoRCG2.0200Type" >
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreGestoreCPType"/>
+          <xs:element name="ClienteFinale" type="sg:ClienteFinaleConDatiFiscaliBaseType"/>
+          <xs:element name="DatiTecnici" type="sgas:DatiTecniciBaseType"/>
+          <xs:element name="DatiRisoluzione" type="sg:DatiRisoluzioneContrattualeDistrType"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="RCG2"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0200"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="FlussoRCG2.0201Type" >
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreCPOpzGestoreCPType"/>
+          <xs:element name="DatiTecnici" type="sgas:DatiTecniciBaseType"/>
+          <xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+          <xs:element name="Dati_TIMG" type="sgas:DatiTimgType" minOccurs="0"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="RCG2"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0201"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="FlussoRCG2.RESPType" >
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreCPOpzGestoreCPType"/>
+          <xs:element name="Esito" type="sg:DefaultEsitoType"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="RCG2"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="RESP"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+</xs:schema>

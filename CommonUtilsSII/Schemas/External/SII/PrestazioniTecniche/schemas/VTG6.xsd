@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VTG6/v1"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.6"
+	xmlns:sgas="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.4"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VTG6/v1">
+	
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.6"	schemaLocation="StruttureGenerali_v1_6.xsd"/>
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.4" schemaLocation="StruttureGas_v1_4.xsd"/>
+	
+	<!-- ************** FLUSSI **************** -->
+	
+	<!-- *************** 0200 ***************** -->
+	
+	<xs:complexType name="FlussoVTG6.0200Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreCPGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="dat:DatiTecniciVTG6"/>
+					<xs:element name="DatiLettura" type="dat:DatiLetturaVTG6"/>
+					<xs:element ref="sg:NOTE" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="VTG6" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0200" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- *************** 0201 ***************** -->
+	
+	<xs:complexType name="FlussoVTG6.0201Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreCPGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="sgas:DatiTecniciBaseType"/>
+					<xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="VTG6" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0201" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="DatiTecniciVTG6">
+		<xs:sequence>
+			<xs:element ref="sgas:COD_PDR"/>
+			<xs:element ref="sgas:MATR_MIS"/>
+			<xs:element name="DATA_ATT_CONTR" type="sg:DateGGMMAAAAType"/>
+			<xs:element name="VOL_ANNUO_SOST" type="dat:doubleType"/>
+			<xs:element name="CLASSE_GRUPPO_MIS" type="sg:String10obb" />
+			<xs:element name="N_CIFRE_MIS" type="sg:Numeric12" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="DatiLetturaVTG6">
+		<xs:sequence>
+			<xs:element name="SEGN_MIS_SOST" type="dat:segnanteType" />
+			<xs:element name="TIPO_LETTURA"  type="dat:TipoLetturaType" />
+			<xs:element name="PRE_CONV" type="dat:ConfermaType" />
+			<xs:element name="GRUPPO_MIS_INT" type="dat:ConfermaType" minOccurs="0"/>
+			<xs:element name="COEFF_CORR" type="dat:doubleType"/>
+			<xs:element name="MATR_CONV" type="sg:String20obb" minOccurs="0" />
+			<xs:element name="N_CIFRE_CONV" type="sg:Numeric12" minOccurs="0" />
+			<xs:element name="SEGN_CONV" type="dat:segnanteType" minOccurs="0" />
+			<xs:element name="DATA_MIS_EFF" type="sg:DateGGMMAAAAType"/>
+			<xs:element name="SEGN_MIS_EFF" type="dat:segnanteType" minOccurs="0"/>
+			<xs:element name="SEGN_CONV_EFF" type="dat:segnanteType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:simpleType name="doubleType">
+		<xs:restriction base="xs:double">
+			<xs:minInclusive value="0" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="TipoLetturaType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="ConfermaType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="segnanteType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{9}" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+</xs:schema>

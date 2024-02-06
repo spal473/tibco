@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_ATG2/v1"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.6"
+	xmlns:sgas="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.4"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_ATG2/v1">
+	
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.6"	schemaLocation="StruttureGenerali_v1_6.xsd"/>
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.4" schemaLocation="StruttureGas_v1_4.xsd"/>
+	
+	<!-- ************** FLUSSI **************** -->
+	
+	<!-- *************** 0200 ***************** -->
+	
+	<xs:complexType name="FlussoATG2.0200Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="sgas:DatiTecniciMatrMisType"/>
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleConDenomEIndirizziObbType"/>            
+					<xs:element name="ReferenteClienteFinale" type="sg:ReferenteClienteFinaleBaseType" minOccurs="0"/>            
+					<xs:element name="AgevolazioniFiscali" type="sg:AgevolazioniFiscaliBaseType" minOccurs="0"/>            
+					<xs:element name="InformazioniFUI" type="sg:InformazioniFuiType"/>            
+					<xs:element name="ClienteFinaleRichiedente" type="sg:ClienteFinaleBaseType"/>            
+					<xs:element name="InformazioniFUIRichiedente" type="sg:InformazioniFuiType"/>            
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="ATG2" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0200" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- *************** 0201 ***************** -->
+	
+	<xs:complexType name="FlussoATG2.0201Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreCPGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="sgas:DatiTecniciBaseType"/>
+					<xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="ATG2" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0201" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- *************** RESP ***************** -->
+
+	<xs:complexType name="FlussoATG2.RESPType" >
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreCPOpzGestoreCPType"/>
+					<xs:element name="Esito" type="sg:DefaultEsitoType"/>
+				</xs:sequence>        
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="ATG2"/>
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="RESP"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+</xs:schema>

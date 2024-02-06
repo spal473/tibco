@@ -1,0 +1,1285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12"
+  elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12">
+
+  <xs:include schemaLocation="StruttureGenerali_v1_12_IR.xsd"/>
+
+  <xs:element name="FlussiMassivi" type="sg:FlussiMassiviType"/>
+  <xs:element name="Flusso" type="sg:FlussoTypeAbstract"/>
+  <xs:element name="MW_Allegato" type="sg:MWAllegatoType"/>
+  
+  <xs:element name="SETTORE" type="sg:SettoreType"/>
+  <xs:element name="DATA_INVIO_RICHIESTA" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_DEC_CONTR" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_RICHIESTA" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_DECORRENZA" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_DECORRENZA_RET" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_REVOCA" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_CONTRATTO" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_TRASMISSIONE" type="xs:dateTime"/>
+  <xs:element name="DATA_INIZIO" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_FINE" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_DEC" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_ESECUZIONE" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_ULTIMA_ATTIVAZIONE_SUI" type="sg:GGMMAAAAType"/>
+  
+  <xs:element name="REVOCA" type="sg:EsitoBoolType"/>
+  <xs:element name="COD_CAUSALE_REVOCA" type="sg:CodCausaleType"/>
+  <xs:element name="MOTIVAZIONE_REVOCA" type="sg:String255obb"/>
+  <xs:element name="TIPOLOGIA_RISOLUZIONE" type="sg:TipologiaRisoluzioneType"/>
+  <xs:element name="PRIORITA" type="sg:Digit3Obb"/>
+  
+  <xs:element name="VERIFICA_AMM" type="sg:EsitoBoolType"/>
+  <xs:element name="COD_CAUSALE" type="sg:CodCausaleType"/>
+  <xs:element name="MOTIVAZIONE" type="sg:String255"/>
+  
+  <xs:element name="ESITO" type="sg:EsitoBoolType"/>
+  <xs:element name="TIPO_ESITO" type="sg:EsitoBoolType"/>
+  <xs:element name="COD_ESITO" type="sg:CodCausaleType"/>
+  <xs:element name="DETTAGLIO_ESITO" type="sg:String255"/>
+
+  <xs:element name="CP_GESTORE_ANN" type="sg:ProtocolloSIIType"/>
+  <xs:element name="CP_UTENTE_ANN" type="sg:ProtocolloSIIType"/>
+  <xs:element name="NOTE" type="sg:String255obb"/>
+
+  <xs:element name="CONTRATTO_CONNESSIONE" type="sg:ContrattoConnessioneType"/>
+
+  <xs:element name="Fornitura" type="sg:IndirizzoType"/>
+  <xs:element name="Esazione" type="sg:IndirizzoType"/>
+  <xs:element name="Indirizzo" type="sg:IndirizzoType"/>
+  <xs:element name="IndirizzoUbicazione" type="sg:IndirizzoType"/>
+  <xs:element name="SedeLegale" type="sg:IndirizzoType"/>
+  <xs:element name="Residenza" type="sg:DatiResidenzaBaseType"/>
+  <xs:element name="InformazioneTributi" type="sg:InformazioneTributiType"/>
+  <xs:element name="AnagraficaFatturazione" type="sg:AnagraficaClienteFinaleConDenomType"/>
+
+  <xs:element name="TOPONIMO" type="sg:ToponimoType"/>
+  <xs:element name="VIA" type="sg:ViaType"/>
+  <xs:element name="CIV" type="sg:CivicoType"/>
+  <xs:element name="CAP" type="sg:CapType"/>
+  <xs:element name="ISTAT" type="sg:CodiceComuneIstatType"/>
+  <xs:element name="COMUNE" type="sg:ComuneType"/>
+  <xs:element name="LOCALITA" type="sg:LocalitaType"/>
+  <xs:element name="PROV" type="sg:CodProvinciaType"/>
+  <xs:element name="NAZIONE" type="sg:NazioneType"/>
+  <xs:element name="ALTRO" type="sg:String255"/>
+
+  <xs:element name="CF" type="sg:CodiceFiscaleType"/>
+  <xs:element name="PIVA" type="sg:PartitaIVAUEType"/>
+  <xs:element name="CF_STRANIERO" type="sg:EsitoBoolType"/>
+  <xs:element name="NOME" type="sg:String255obb"/>
+  <xs:element name="COGNOME" type="sg:String255obb"/>
+  <xs:element name="RAGIONE_SOCIALE" type="sg:String255obb"/>
+  <xs:element name="RAGIONE_SOCIALE_DENOMINAZIONE" type="sg:String255obb"/>
+  <xs:element name="EMAIL" type="sg:String100obb"/>
+  <xs:element name="TELEFONO" type="sg:String50obb"/>
+
+  <xs:element name="ALIQUOTA_IVA" type="sg:Numeric2"/>
+  <xs:element name="ALIQUOTA_ACCISE" type="sg:AliquotaDecimale"/>
+  <xs:element name="ADDIZ_PROVINCIALE" type="sg:AliquotaDecimale"/>
+  <xs:element name="ADDIZ_REGIONALE" type="sg:AliquotaDecimale"/>
+  <xs:element name="ADDIZ_COMUNALE" type="sg:AliquotaDecimale"/>
+  <xs:element name="ALTRE_INFORMAZIONI" type="sg:String255"/>
+  <xs:element name="COD_POD" type="sg:CodicePodType"/>
+  <xs:element name="COD_PDR" type="sg:CodicePdrType"/>
+  <xs:element name="RESIDENZA" type="sg:String2ObbType"/>
+  <xs:element name="DATA_VAL_RES" type="sg:GGMMAAAAType"/>
+  <xs:element name="MERCATO_PROVENIENZA" type="sg:AlfaNum1ObbType"/>
+  <xs:element name="SETT_MERCEOLOGICO" type="sg:SettMerceolType"/>
+  <xs:element name="SERVIZIO_TUTELA" type="sg:String2ObbType"/>
+  <xs:element name="CODICE_UFFICIO" type="sg:String8obb"/>
+  <xs:element name="PAGAMENTO_IVA" type="sg:String2ObbType"/>
+
+  <xs:element name="IvaImposte" type="sg:IvaImposteType"/>
+  <xs:element name="IVA" type="sg:Decimal_2_2_Type"/>
+  <xs:element name="IMPOSTE" type="sg:String255obb"/>
+  <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleConDenomTelType"/>
+
+  <xs:element name="Autolettura" type="sg:AutoletturaType"/>
+  <xs:element name="DATA_ACQUISIZIONE" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATO_AUTOLETTURA" type="sg:Numeric9"/>
+  <xs:element name="ACCESSO_FUI" type="sg:String2ObbType"/>
+  <xs:element name="AGEVOLAZIONI_IVA" type="sg:String2ObbType"/>
+  <xs:element name="AGEVOLAZIONI_ALTRO" type="sg:String2ObbType"/>
+  <xs:element name="ALTRE_IMP" type="sg:String255obb"/>
+  <xs:element name="AGEVOLAZIONE_IVA" type="sg:String255obb"/>
+  <xs:element name="AGEVOLAZIONE_ALTRE_IMP" type="sg:String255obb"/>
+
+  <xs:element name="IDENTIFICATORE_FILE" type="sg:String255obb"/>
+  <xs:element name="IDENTIFICATORE_FILE_RISPOSTA" type="sg:String255obb"/>
+  <xs:element name="DIMENSIONE_FILE" type="sg:DimFileKBType"/>
+  <xs:element name="TIPO_FILE" type="sg:FormatoFileType"/>
+  <xs:element name="TIPO_DATO" type="sg:TipoDatoType"/>
+  <xs:element name="ALGORITMO" type="xs:string"/>
+  <xs:element name="DIGEST" type="sg:String100obb"/>
+  <xs:element name="FIRMA_DIGITALE" type="sg:String4000obb"/>
+
+  <xs:element name="AUTOCERTIFICAZIONE" type="sg:String2ObbType"/>
+  <xs:element name="TIPO_PRESTAZIONE" type="sg:String3ObbType"/>
+  
+  <!-- SIND -->
+  <xs:element name="CMOR" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="CREDITO" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="FATT" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="CMOR-1" type="sg:ListDecimal_15_2_Type"/>
+  <xs:element name="CP_GESTORE_CMOR-1" type="sg:ListProtocolloSIIType"/>
+  <xs:element name="DATA_SWITCHING" type="sg:GGMMAAAAType"/>
+  <xs:element name="MODALITA_CALCOLO_CREDITO" type="sg:String25obb"/>
+  <xs:element name="ESTREMI_COSTITUZIONE_MORA" type="sg:String25obb"/>
+  <xs:element name="DATA_INVIO" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_EMISSIONE" type="sg:GGMMAAAAType"/>
+  <xs:element name="IDENTIFICATIVO_FATTURA" type="sg:String25obb"/>
+  <xs:element name="IMPORTO_FATTURATO" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="TIPO_FATTURA" type="sg:String1"/>
+  <xs:element name="DATA_SCADENZA" type="sg:GGMMAAAAType"/>
+  <xs:element name="IDENTIFICATIVI_FATTURE" type="sg:String255obb"/>
+  <xs:element name="DATE_EMISSIONE" type="sg:ListGGMMAAAAType"/>
+  <xs:element name="IMPORTI_FATTURATI" type="sg:ListDecimal_15_2_Type"/>
+  <xs:element name="TIPO_FATTURE" type="sg:ListString1"/>
+  <xs:element name="DATE_SCADENZA" type="sg:ListGGMMAAAAType"/>
+  <xs:element name="CODICE_IBAN" type="sg:String27obb"/>
+  <xs:element name="EROGAZIONE_CSEA" type="sg:String1"/>
+  <xs:element name="DATA_VERSAMENTO" type="sg:GGMMAAAAType"/>
+  <xs:element name="IMPORTO" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="COD_PROCEDURA" type="sg:String1"/>
+  <xs:element name="DATA_RICHIESTA_SOSPENSIONE" type="sg:GGMMAAAAType"/>
+  <xs:element name="RICHIESTA_SOSPENSIONE" type="sg:String1"/>
+  <xs:element name="STATO_SOSPENSIONE" type="sg:String1"/>
+  <xs:element name="DATA_SOSPENSIONE" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_RIATTIVAZIONE_REVOCA" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_FATTURAZIONE" type="sg:GGMMAAAAType"/>
+  <xs:element name="IMPORTO_VERSAMENTO" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="IMPORTO_SOSPESO" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="DATA_STORNO" type="sg:GGMMAAAAType"/>
+  <xs:element name="IMPORTO_STORNO" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="CMOR_STORNATO" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="COD_STORNO" type="sg:String15obb"/>
+  <xs:element name="DATA_INCASSO" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_RESTITUZIONE" type="sg:GGMMAAAAType"/>
+  <xs:element name="IMPORTO_RESTITUZIONE" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="COD_ATTIVITA" type="sg:CodCausaleType"/>
+  <xs:element name="ANNO" type="sg:Numeric4"/>
+  <xs:element name="N_CMOR_FATTURATI" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="IMPORTO_CMOR_FATTURATI" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="N_CMOR_FATTURATI_NON_RISCOSSI" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="IMPORTO_CMOR_FATTURATI_NON_RISCOSSI" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="N_CMOR_RICHIESTA_SOSPENSIONE_POD" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="IMPORTO_CMOR_RICHIESTA_SOSPENSIONE_POD" type="sg:Decimal_15_2_Type"/>
+  <xs:element name="TIPO_NOTIFICA" type="sg:String3obb"/>
+  <xs:element name="TIPO_FORNITURA" type="sg:TipoFornituraStringType"/>
+  <xs:element name="COD_OFFERTA" type="sg:String35obb"/>
+  <xs:element name="REFERENTE" type="sg:String2ObbType"/>
+
+  <xs:complexType name="FlussoTypeAbstract" abstract="true"/>
+
+  <xs:complexType name="MWAllegatoType">	
+	<xs:simpleContent>
+		<xs:extension base="xs:string">
+			<xs:attribute name="nome" type="xs:string"/>
+		</xs:extension>
+	</xs:simpleContent>
+  </xs:complexType>
+  
+  <xs:complexType name="EsitoBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:ESITO"/>
+      <xs:element ref="sg:COD_ESITO" minOccurs="0"/>
+      <xs:element ref="sg:DETTAGLIO_ESITO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="Esito2BaseType">
+    <xs:sequence>
+      <xs:element ref="sg:TIPO_ESITO"/>
+      <xs:element ref="sg:COD_ESITO" minOccurs="0"/>
+      <xs:element ref="sg:DETTAGLIO_ESITO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="AmmissibilitaBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:VERIFICA_AMM"/>
+      <xs:element ref="sg:COD_CAUSALE" minOccurs="0"/>
+      <xs:element ref="sg:MOTIVAZIONE" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+    
+  <!-- CLIENTE FINALE -->
+  
+  <xs:complexType name="ClienteFinaleBaseType">
+    <xs:sequence>
+      <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleBaseType"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDatiFiscaliBaseType">
+    <xs:sequence>
+      <xs:element name="DatiFiscali" type="sg:AnagraficaClienteFinaleBaseType"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDatiFiscaliOpzBaseType">
+    <xs:sequence>
+      <xs:element name="DatiFiscali" type="sg:AnagraficaClienteFinaleBaseType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDatiFiscaliAnagBaseType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDatiFiscaliBaseType">
+        <xs:sequence>
+          <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleSoloDenomType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDatiFiscaliAnagBaseOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDatiFiscaliBaseType">
+        <xs:sequence>
+          <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleSoloDenomType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDatiFiscaliAnagEmailTelType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDatiFiscaliBaseType">
+        <xs:sequence>
+          <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleSoloDenomEmailTelType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDatiFiscaliAnagOpzEmailTelType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDatiFiscaliBaseType">
+        <xs:sequence>
+          <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleSoloDenomEmailTelType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDatiFiscaliAnagEmailTelOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDatiFiscaliBaseType">
+        <xs:sequence>
+          <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleSoloDenomEmailTelOpzType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDatiFiscaliOpzAnagOpzEmailTelOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDatiFiscaliOpzBaseType">
+        <xs:sequence>
+          <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleSoloDenomEmailTelOpzType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDatiFiscaliContattiType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDatiFiscaliBaseType">
+        <xs:sequence>
+          <xs:element name="Contatti" type="sg:AnagraficaClienteFinaleSoloEmailTelType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDatiFiscaliContattiOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDatiFiscaliBaseType">
+        <xs:sequence>
+          <xs:element name="Contatti" type="sg:AnagraficaClienteFinaleSoloEmailTelType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleCompletoOpzType">
+    <xs:sequence>
+      <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleCompletoOpzType"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDatiFiscaliCompletoTribOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDatiFiscaliAnagOpzEmailTelType">
+        <xs:sequence>
+          <xs:element ref="sg:AnagraficaFatturazione" minOccurs="0"/>
+          <xs:element ref="sg:Fornitura" minOccurs="0"/>
+          <xs:element ref="sg:Esazione" minOccurs="0"/>
+          <xs:element ref="sg:InformazioneTributi" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDatiFiscaliTribRegType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDatiFiscaliBaseType">
+        <xs:sequence>
+          <xs:element name="InformazioneTributi" type="sg:InformazioneTributiRegType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDatiFiscaliAnagIndTribRegType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDatiFiscaliAnagEmailTelOpzType">
+        <xs:sequence>
+          <xs:element ref="sg:AnagraficaFatturazione" minOccurs="0"/>
+          <xs:element ref="sg:Fornitura"/>
+          <xs:element ref="sg:Esazione" minOccurs="0"/>
+          <xs:element name="InformazioneTributi" type="sg:InformazioneTributiRegType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDatiFiscaliAnagCompletoTribRegType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDatiFiscaliOpzAnagOpzEmailTelOpzType">
+        <xs:sequence>
+          <xs:element ref="sg:AnagraficaFatturazione" minOccurs="0"/>
+          <xs:element ref="sg:Fornitura"  minOccurs="0"/>
+          <xs:element ref="sg:Esazione" minOccurs="0"/>
+          <xs:element name="DatiCommerciali" type="sg:DatiCommercialiBaseType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleCompletoIndirizziTributiOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleCompletoOpzType">
+        <xs:sequence>
+          <xs:element ref="sg:AnagraficaFatturazione" minOccurs="0"/>
+          <xs:element ref="sg:Fornitura" minOccurs="0"/>
+          <xs:element ref="sg:Esazione" minOccurs="0"/>
+          <xs:element ref="sg:Residenza" minOccurs="0"/>
+          <xs:element ref="sg:InformazioneTributi" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleCompletoIndirizziTributiRegOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleCompletoOpzType">
+        <xs:sequence>
+          <xs:element ref="sg:AnagraficaFatturazione" minOccurs="0"/>
+          <xs:element ref="sg:Fornitura" minOccurs="0"/>
+          <xs:element ref="sg:Esazione" minOccurs="0"/>
+          <xs:element ref="sg:Residenza" minOccurs="0"/>
+          <xs:element name="InformazioneTributi" type="sg:InformazioneTributiRegType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleSoloDenomType">
+    <xs:sequence>
+      <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleSoloDenomType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleSoloDenomTelType">
+    <xs:sequence>
+      <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleSoloDenomTelType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleConDenomType">
+    <xs:sequence>
+      <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleConDenomType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleConDenomTelType">
+    <xs:sequence>
+      <xs:element ref="sg:Anagrafica" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleConEmailTelType">
+    <xs:sequence>
+      <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleConEmailTelType"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleConDenomEIndirizziType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDenomType">
+        <xs:sequence>
+          <xs:element ref="sg:Esazione" minOccurs="0"/>
+          <xs:element ref="sg:SedeLegale" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleConDenomEIndirizziTelType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDenomTelType">
+        <xs:sequence>
+          <xs:element ref="sg:Esazione" minOccurs="0"/>
+          <xs:element ref="sg:Indirizzo" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleConDenomEIndirizziObbType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDenomType">
+        <xs:sequence>
+          <xs:element ref="sg:Esazione"/>
+          <xs:element ref="sg:Indirizzo" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleConDenomEIndirizziObbTelType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDenomTelType">
+        <xs:sequence>
+          <xs:element ref="sg:Esazione"/>
+          <xs:element ref="sg:Indirizzo" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleAnagraficaIndirizziEx1Type">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDenomEIndirizziObbTelType">
+        <xs:sequence>
+          <xs:element ref="sg:Residenza"/>
+          <xs:element ref="sg:AnagraficaFatturazione" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleFornituraType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDenomTelType">
+        <xs:sequence>
+          <xs:element ref="sg:Fornitura"/>
+          <xs:element ref="sg:Esazione" minOccurs="0"/>
+          <xs:element ref="sg:Residenza" minOccurs="0"/>
+          <xs:element ref="sg:InformazioneTributi"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleTributiType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleBaseType">
+        <xs:sequence>
+          <xs:element ref="sg:InformazioneTributi" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleCompletoType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDenomTelType">
+        <xs:sequence>
+          <xs:element ref="sg:Residenza" minOccurs="0"/>
+          <xs:element ref="sg:Esazione" minOccurs="0"/>
+          <xs:element ref="sg:InformazioneTributi" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleCompletoObbType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDenomTelType">
+        <xs:sequence>
+          <xs:element ref="sg:Residenza"/>
+          <xs:element name="Esazione" type="sg:IndirizzoCompletoType"/>
+          <xs:element ref="sg:InformazioneTributi"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+ 
+  <xs:complexType name="ClienteFinaleVTGType">
+    <xs:sequence>
+      <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleCompletoTelEmailOpzType"/>
+      <xs:element name="Fornitura" type="sg:IndirizzoCAPObbType"/>
+      <xs:element ref="sg:Residenza"  minOccurs="0" />
+      <xs:element name="Esazione"  type="sg:IndirizzoCAPObbType" minOccurs="0" />
+      <xs:element ref="sg:AnagraficaFatturazione"  minOccurs="0" />
+      <xs:element name="InformazioneTributi" type="sg:InformazioneTributiRegOpzType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleDistributoreVTGType">
+    <xs:sequence>
+      <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleCompletoTelEmailOpzType"/>
+      <xs:element name="Fornitura" type="sg:IndirizzoCAPObbType" />
+      <xs:element name="Residenza"  type="sg:DatiResidenzaType" minOccurs="0" />
+      <xs:element name="Esazione"  type="sg:IndirizzoCAPObbType" minOccurs="0" />
+      <xs:element ref="sg:AnagraficaFatturazione"  minOccurs="0" />
+      <xs:element name="InformazioneTributi" type="sg:InformazioneTributiRegOpzType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleBaseVTType">
+    <xs:sequence>
+      <xs:element name="Anagrafica" type="sg:AnagraficaClienteFinaleCompletoTelEmailOpzType"/>
+      <xs:element name="Esazione"  type="sg:IndirizzoCAPObbType"/>
+      <xs:element name="Indirizzo" type="sg:IndirizzoCAPObbType" minOccurs="0" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ClienteFinaleCompletoVTType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleBaseVTType">
+        <xs:sequence>
+          <xs:element name="InformazioneTributi" type="sg:InformazioneTributiObbType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="BeneficiarioType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleSoloDenomTelType">
+        <xs:sequence>
+          <xs:element ref="sg:Indirizzo"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="AnagraficaClienteFinaleBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:CF" minOccurs="0"/>
+      <xs:element ref="sg:PIVA" minOccurs="0"/>
+      <xs:element ref="sg:CF_STRANIERO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AnagraficaClienteFinaleSoloDenomType">
+    <xs:sequence>
+      <xs:element ref="sg:NOME" minOccurs="0"/>
+      <xs:element ref="sg:COGNOME" minOccurs="0"/>
+      <xs:element ref="sg:RAGIONE_SOCIALE_DENOMINAZIONE" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AnagraficaClienteFinaleSoloDenomTelType">
+    <xs:complexContent>
+      <xs:extension base="sg:AnagraficaClienteFinaleSoloDenomType">
+        <xs:sequence>
+          <xs:element ref="sg:TELEFONO" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AnagraficaClienteFinaleSoloDenomEmailTelType">
+    <xs:complexContent>
+      <xs:extension base="sg:AnagraficaClienteFinaleSoloDenomType">
+        <xs:sequence>
+          <xs:element ref="sg:EMAIL"/>
+          <xs:element ref="sg:TELEFONO"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="AnagraficaClienteFinaleSoloDenomEmailTelOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:AnagraficaClienteFinaleSoloDenomType">
+        <xs:sequence>
+          <xs:element ref="sg:EMAIL" minOccurs="0"/>
+          <xs:element ref="sg:TELEFONO" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="AnagraficaClienteFinaleConDenomType">
+    <xs:complexContent>
+      <xs:extension base="sg:AnagraficaClienteFinaleBaseType">
+        <xs:sequence>
+          <xs:element ref="sg:NOME" minOccurs="0"/>
+          <xs:element ref="sg:COGNOME" minOccurs="0"/>
+          <xs:element ref="sg:RAGIONE_SOCIALE_DENOMINAZIONE" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+ 
+  <xs:complexType name="AnagraficaClienteFinaleSoloEmailTelType">
+      <xs:sequence>
+        <xs:element ref="sg:EMAIL"  minOccurs="0"/>
+        <xs:element ref="sg:TELEFONO"  minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+ 
+  <xs:complexType name="AnagraficaClienteFinaleConEmailTelType">
+    <xs:complexContent>
+      <xs:extension base="sg:AnagraficaClienteFinaleBaseType">
+        <xs:sequence>
+          <xs:element ref="sg:EMAIL"/>
+          <xs:element ref="sg:TELEFONO"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="AnagraficaClienteFinaleConEmailTelOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:AnagraficaClienteFinaleBaseType">
+        <xs:sequence>
+          <xs:element ref="sg:EMAIL" minOccurs="0"/>
+          <xs:element ref="sg:TELEFONO" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="AnagraficaClienteFinaleConDenomTelType">
+    <xs:complexContent>
+      <xs:extension base="sg:AnagraficaClienteFinaleConDenomType">
+        <xs:sequence>
+          <xs:element ref="sg:TELEFONO" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AnagraficaClienteFinaleConDenomEmailTelType">
+    <xs:complexContent>
+      <xs:extension base="sg:AnagraficaClienteFinaleConDenomType">
+        <xs:sequence>
+          <xs:element ref="sg:EMAIL"/>
+          <xs:element ref="sg:TELEFONO"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AnagraficaClienteFinaleCompletoOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:AnagraficaClienteFinaleConDenomType">
+        <xs:sequence>
+          <xs:element ref="sg:EMAIL" minOccurs="0"/>
+          <xs:element ref="sg:TELEFONO" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="AnagraficaClienteFinaleCompletoTelEmailOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:AnagraficaClienteFinaleConDenomType">
+        <xs:sequence>
+          <xs:element ref="sg:TELEFONO" minOccurs="0"/>
+          <xs:element ref="sg:EMAIL" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="AnagraficaClienteFinaleConRagSocType">
+    <xs:complexContent>
+      <xs:extension base="sg:AnagraficaClienteFinaleBaseType">
+        <xs:sequence>
+          <xs:element ref="sg:NOME" minOccurs="0"/>
+          <xs:element ref="sg:COGNOME" minOccurs="0"/>
+          <xs:element ref="sg:RAGIONE_SOCIALE" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IndirizzoType">
+    <xs:sequence>
+      <xs:element ref="sg:TOPONIMO" minOccurs="0"/>
+      <xs:element ref="sg:VIA"/>
+      <xs:element ref="sg:CIV"/>
+      <xs:element ref="sg:CAP" minOccurs="0"/>
+      <xs:element ref="sg:ISTAT" minOccurs="0"/>
+      <xs:element ref="sg:LOCALITA"/>
+      <xs:element ref="sg:PROV" minOccurs="0"/>
+      <xs:element ref="sg:NAZIONE"/>
+      <xs:element ref="sg:ALTRO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="IndirizzoCAPObbType">
+    <xs:sequence>
+      <xs:element ref="sg:TOPONIMO" minOccurs="0"/>
+      <xs:element ref="sg:VIA"/>
+      <xs:element ref="sg:CIV"/>
+      <xs:element ref="sg:CAP"/>
+      <xs:element ref="sg:ISTAT" minOccurs="0"/>
+      <xs:element ref="sg:LOCALITA"/>
+      <xs:element ref="sg:PROV" minOccurs="0"/>
+      <xs:element ref="sg:NAZIONE"/>
+      <xs:element ref="sg:ALTRO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IndirizzoAllObbType">
+    <xs:sequence>
+      <xs:element ref="sg:TOPONIMO" minOccurs="0"/>
+      <xs:element ref="sg:VIA" minOccurs="0"/>
+      <xs:element ref="sg:CIV" minOccurs="0"/>
+      <xs:element ref="sg:CAP" minOccurs="0"/>
+      <xs:element ref="sg:ISTAT" minOccurs="0"/>
+      <xs:element ref="sg:LOCALITA" minOccurs="0"/>
+      <xs:element ref="sg:PROV" minOccurs="0"/>
+      <xs:element ref="sg:NAZIONE" minOccurs="0"/>
+      <xs:element ref="sg:ALTRO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="IndirizzoCompletoType">
+    <xs:sequence>
+      <xs:element ref="sg:TOPONIMO"/>
+      <xs:element ref="sg:VIA"/>
+      <xs:element ref="sg:CIV"/>
+      <xs:element ref="sg:CAP"/>
+      <xs:element ref="sg:ISTAT"/>
+      <xs:element ref="sg:LOCALITA"/>
+      <xs:element ref="sg:PROV" minOccurs="0"/>
+      <xs:element ref="sg:NAZIONE"/>
+      <xs:element ref="sg:ALTRO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ReferenteClienteFinaleBaseType">
+    <xs:sequence>
+      <xs:element name="Anagrafica" type="sg:AnagraficaReferenteClienteFinaleBaseType"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="ReferenteClienteFinaleOpzType">
+    <xs:sequence>
+      <xs:element ref="sg:REFERENTE"/>
+      <xs:element name="Anagrafica" type="sg:AnagraficaReferenteClienteFinaleBaseType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+
+  <xs:complexType name="AnagraficaReferenteClienteFinaleType">
+    <xs:sequence>
+      <xs:element name="Anagrafica" type="sg:AnagraficaReferenteClienteFinaleBaseType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AnagraficaReferenteClienteFinaleBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:NOME" minOccurs="0"/>
+      <xs:element ref="sg:COGNOME" minOccurs="0"/>
+      <xs:element ref="sg:EMAIL" minOccurs="0"/>
+      <xs:element ref="sg:TELEFONO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+ 
+  <xs:complexType name="ClienteFinaleConDenomIndirizziTributiType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDenomEIndirizziType">
+        <xs:sequence>
+          <xs:element ref="sg:InformazioneTributi"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleConDenomIndirizziTelTributiType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDenomEIndirizziTelType">
+        <xs:sequence>
+          <xs:element ref="sg:InformazioneTributi"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleConDenomIndirizziTelTributiOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDenomEIndirizziTelType">
+        <xs:sequence>
+          <xs:element ref="sg:InformazioneTributi" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ClienteFinaleConDenomIndirizziObbTelTributiType">
+    <xs:complexContent>
+      <xs:extension base="sg:ClienteFinaleConDenomEIndirizziObbTelType">
+        <xs:sequence>
+          <xs:element ref="sg:InformazioneTributi"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="InformazioneTributiType">
+    <xs:complexContent>
+      <xs:extension base="sg:InformazioneTributiBaseType">
+        <xs:sequence>
+          <xs:element ref="sg:ADDIZ_PROVINCIALE"/>
+          <xs:element ref="sg:ADDIZ_COMUNALE"/>
+          <xs:element ref="sg:ALTRE_INFORMAZIONI" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="InformazioneTributiObbType">
+    <xs:complexContent>
+      <xs:extension base="sg:InformazioneTributiObbBaseType">
+        <xs:sequence>
+          <xs:element ref="sg:ADDIZ_PROVINCIALE"/>
+          <xs:element ref="sg:ADDIZ_COMUNALE"/>
+          <xs:element ref="sg:ALTRE_INFORMAZIONI" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="InformazioneTributiRegType">
+    <xs:complexContent>
+      <xs:extension base="sg:InformazioneTributiBaseType">
+        <xs:sequence>
+          <xs:element ref="sg:ADDIZ_REGIONALE"/>
+          <xs:element ref="sg:ALTRE_INFORMAZIONI" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="InformazioneTributiRegOpzType">
+    <xs:complexContent>
+      <xs:extension base="sg:InformazioneTributiOpzType">
+        <xs:sequence>
+          <xs:element ref="sg:ADDIZ_REGIONALE"  minOccurs="0"/>
+          <xs:element ref="sg:ALTRE_INFORMAZIONI" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="InformazioneTributiBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:ALIQUOTA_IVA" minOccurs="0"/>
+      <xs:element ref="sg:ALIQUOTA_ACCISE"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="InformazioneTributiObbBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:ALIQUOTA_IVA" />
+      <xs:element ref="sg:ALIQUOTA_ACCISE"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="InformazioneTributiOpzType">
+    <xs:sequence>
+      <xs:element ref="sg:ALIQUOTA_IVA" minOccurs="0"/>
+      <xs:element ref="sg:ALIQUOTA_ACCISE" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiAttivazioneBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:DATA_DECORRENZA"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiAttivazioneBaseUtenteType">
+    <xs:complexContent>
+      <xs:extension base="sg:DatiAttivazioneBaseType">
+        <xs:sequence>
+          <xs:element ref="sg:PIVA_UTENTE"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DatiRichiestaBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:DATA_RICHIESTA"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiResidenzaBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:RESIDENZA" minOccurs="0"/>
+      <xs:element ref="sg:DATA_VAL_RES" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+ 
+  <xs:complexType name="DatiResidenzaType">
+    <xs:sequence>
+      <xs:element ref="sg:RESIDENZA" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiRisoluzioneContrattualeBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:DATA_DECORRENZA"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiRisoluzioneContrattualeTipologiaType">
+    <xs:sequence>
+      <xs:element ref="sg:TIPOLOGIA_RISOLUZIONE"/>
+      <xs:element ref="sg:MOTIVAZIONE" minOccurs="0"/>
+      <xs:element ref="sg:DATA_DECORRENZA" minOccurs="0"/>
+      <xs:element ref="sg:PRIORITA" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiRisoluzioneContrattualeDistrType">
+    <xs:sequence>
+      <xs:element ref="sg:TIPOLOGIA_RISOLUZIONE"/>
+      <xs:element ref="sg:DATA_DECORRENZA"/>
+      <xs:element ref="sg:PRIORITA" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiRisoluzioneContrattualeCA5Type">
+    <xs:sequence>
+      <xs:element ref="sg:TIPOLOGIA_RISOLUZIONE"/>
+      <xs:element ref="sg:DATA_DECORRENZA"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="AutocertificazioniBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:CONTRATTO_CONNESSIONE"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiCommercialiTutelaBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:SERVIZIO_TUTELA"/>
+      <xs:element ref="sg:CODICE_UFFICIO" minOccurs="0"/>
+      <xs:element ref="sg:PAGAMENTO_IVA" minOccurs="0"/>
+      <xs:element ref="sg:SETT_MERCEOLOGICO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiCommercialiTutelaType">
+    <xs:complexContent>
+      <xs:extension base="sg:DatiCommercialiTutelaBaseType">
+        <xs:sequence>
+          <xs:element ref="sg:COD_OFFERTA"/>
+          <xs:element ref="sg:AUTOCERTIFICAZIONE" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DatiCommercialiType">
+    <xs:complexContent>
+      <xs:extension base="sg:DatiCommercialiTutelaBaseType">
+        <xs:sequence>
+          <xs:element ref="sg:COD_OFFERTA" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiCommercialiBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:CODICE_UFFICIO" minOccurs="0"/>
+      <xs:element ref="sg:PAGAMENTO_IVA" minOccurs="0"/>
+      <xs:element ref="sg:SETT_MERCEOLOGICO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiCommercialiTipoFornUIType">
+    <xs:sequence>
+      <xs:element ref="sg:CODICE_UFFICIO" minOccurs="0"/>
+      <xs:element ref="sg:PAGAMENTO_IVA" minOccurs="0"/>
+      <xs:element ref="sg:TIPO_FORNITURA"/>
+      <xs:element ref="sg:SETT_MERCEOLOGICO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiCommercialiVTGType">
+    <xs:sequence>
+      <xs:element ref="sg:TIPO_FORNITURA"/>
+      <xs:element ref="sg:SETT_MERCEOLOGICO" minOccurs="0"/>
+      <xs:element ref="sg:CODICE_UFFICIO" minOccurs="0"/>
+      <xs:element ref="sg:PAGAMENTO_IVA" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiCommercialiDistributoreVTGType">
+    <xs:sequence>
+      <xs:element ref="sg:TIPO_FORNITURA"/>
+      <xs:element ref="sg:PAGAMENTO_IVA" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiCommercialiDistributoreVTType">
+    <xs:sequence>
+      <xs:element ref="sg:SERVIZIO_TUTELA"/>
+      <xs:element ref="sg:SETT_MERCEOLOGICO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DefaultEsitoType">
+    <xs:sequence>
+      <xs:element name="Esito" type="sg:EsitoBoolType"/>
+      <xs:element name="CodCausale" type="sg:CodCausaleType" minOccurs="0"/>
+      <xs:element name="Motivazione" type="sg:String255" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AnnullamentoDatiPraticaBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:CP_GESTORE_ANN"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AnnullamentoDatiPraticaType">
+    <xs:complexContent>
+      <xs:extension base="sg:AnnullamentoDatiPraticaBaseType">
+        <xs:sequence>
+          <xs:element ref="sg:CP_UTENTE_ANN" minOccurs="0"/>
+          <xs:element ref="sg:SETTORE"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DatiAnnullamentoPraticaType">
+    <xs:sequence>
+      <xs:element name="COD_CAUSALE" type="sg:CodCausaleAnnullamentoType"/>
+      <xs:element name="MOTIVAZIONE" type="sg:String255obb"/>
+      <xs:element ref="sg:NOTE" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiTecniciMinimaliType">
+    <xs:sequence>
+      <xs:element ref="sg:COD_POD" minOccurs="0"/>
+      <xs:element ref="sg:COD_PDR" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiTecniciBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:SETTORE"/>
+      <xs:element ref="sg:COD_POD" minOccurs="0"/>
+      <xs:element ref="sg:COD_PDR" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiTecniciBaseEl">
+    <xs:sequence>
+      <xs:element name="SETTORE" type="sg:SettoreType" fixed="E"/>
+      <xs:element ref="sg:COD_POD"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiTecniciBaseGas">
+    <xs:sequence>
+      <xs:element name="SETTORE" type="sg:SettoreType" fixed="G"/>
+      <xs:element ref="sg:COD_PDR"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="IvaImposteType">
+    <xs:sequence>
+      <xs:element ref="sg:IVA"/>
+      <xs:element ref="sg:IMPOSTE" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AutoletturaType">
+    <xs:sequence>
+      <xs:element ref="sg:DATA_ACQUISIZIONE"/>
+      <xs:element ref="sg:DATO_AUTOLETTURA"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="InformazioniFuiType">
+    <xs:sequence>
+      <xs:element ref="sg:ACCESSO_FUI"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AgevolazioniFiscaliBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:AGEVOLAZIONE_IVA" minOccurs="0"/>
+      <xs:element ref="sg:AGEVOLAZIONE_ALTRE_IMP" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AgevolazioniFiscaliType">
+    <xs:sequence>
+      <xs:element ref="sg:AGEVOLAZIONI_IVA"/>
+      <xs:element name="IVA" type="sg:String255obb" minOccurs="0"/>
+      <xs:element ref="sg:AGEVOLAZIONI_ALTRO"/>
+      <xs:element ref="sg:ALTRE_IMP" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiFileBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:IDENTIFICATORE_FILE"/>
+      <xs:element ref="sg:DIMENSIONE_FILE"/>
+      <xs:element ref="sg:TIPO_FILE"/>
+      <xs:element ref="sg:DIGEST"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="EsitoFileBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:IDENTIFICATORE_FILE"/>
+      <xs:element ref="sg:TIPO_DATO"/>
+      <xs:element ref="sg:DATA_TRASMISSIONE" minOccurs="0"/>
+      <xs:element ref="sg:DIGEST"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiTipoFileBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:TIPO_DATO"/>
+      <xs:element ref="sg:IDENTIFICATORE_FILE"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiTipoFileType">
+    <xs:complexContent>
+      <xs:extension base="sg:DatiTipoFileBaseType">
+        <xs:sequence>
+          <xs:element ref="sg:ALGORITMO" minOccurs="0"/>
+          <xs:element ref="sg:DIGEST" minOccurs="0"/>
+          <xs:element ref="sg:FIRMA_DIGITALE" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="DatiTipoFileRespBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:TIPO_DATO"/>
+      <xs:element ref="sg:IDENTIFICATORE_FILE_RISPOSTA"/>
+      <xs:element ref="sg:IDENTIFICATORE_FILE"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiTrasmissionePortaleBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:DATA_TRASMISSIONE"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="IdentificativoControparteCommercialeUscenteBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:PIVA_CC_USCENTE"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="IdentificativoControparteCommercialeEntranteBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:PIVA_CC_ENTRANTE"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FatturaBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:IDENTIFICATIVO_FATTURA" minOccurs="0"/>
+      <xs:element ref="sg:DATA_EMISSIONE" minOccurs="0"/>
+      <xs:element ref="sg:IMPORTO_FATTURATO" minOccurs="0"/>
+      <xs:element ref="sg:TIPO_FATTURA" minOccurs="0"/>
+      <xs:element ref="sg:DATA_SCADENZA" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ListFatturaBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:IDENTIFICATIVI_FATTURE" minOccurs="0"/>
+      <xs:element ref="sg:DATE_EMISSIONE" minOccurs="0"/>
+      <xs:element ref="sg:IMPORTI_FATTURATI" minOccurs="0"/>
+      <xs:element ref="sg:TIPO_FATTURE" minOccurs="0"/>
+      <xs:element ref="sg:DATE_SCADENZA" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="InformazioniDistributoreBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:PIVA_DISTRIBUTORE"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiSwitchingBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:DATA_DECORRENZA"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TipologiaRichiestaVariazioneBaseType">
+    <xs:sequence>
+      <xs:element ref="sg:TIPO_PRESTAZIONE"/>
+      <xs:element ref="sg:DATA_ESECUZIONE" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ******************** INFRASTRUTTURA SII ******************** -->
+
+  <xs:complexType name="DatiPraticaType">
+    <xs:sequence>
+      <xs:element name="IdOperatore" type="xs:integer" minOccurs="0"/>
+      <xs:element name="DataRicezioneRichiesta" type="xs:dateTime" minOccurs="0"/>
+	  <xs:element name="IdRichiestaMassiva" type="xs:integer" minOccurs="0"/>
+      <xs:element name="IdPratica" type="xs:integer"/>
+      <xs:element name="IdProtocollo" type="sg:ProtocolloSIIType" minOccurs="0"/>
+      <xs:element name="EsitoAmm" type="sg:EsitoBoolType" minOccurs="0"/>
+      <xs:element name="CodicePod" type="xs:string" minOccurs="0"/>
+      <xs:element name="UrlAnnull" type="sg:String255" minOccurs="0"/>
+      <xs:element name="CanaleWeb" type="sg:EsitoBoolType" minOccurs="0"/>
+	  <xs:element name="OraScadenzaTransazione" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="PdcModalitaTest" type="sg:EsitoBoolType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DatiWorkflowType">
+    <xs:sequence>
+      <xs:element name="UriPdc" type="xs:string" minOccurs="0"/>
+      <xs:element name="IdPdc" type="xs:integer" minOccurs="0"/>
+      <xs:element name="Versione" type="xs:integer"/>
+      <xs:element name="ApriPraticaSuFault" type="sg:EsitoBoolType" minOccurs="0"/>
+      <xs:element name="PdcModalitaTest" type="sg:EsitoBoolType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="FlussiMassiviType" >
+    <xs:sequence>
+      <xs:element ref="sg:Flusso" maxOccurs="unbounded"/>
+    </xs:sequence>        
+  </xs:complexType>
+
+</xs:schema>
+

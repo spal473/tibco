@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_RT3/v1"
+	xmlns:pt="http://www.acquirenteunico.it/schemas/SII_AU/StrutturePT/v1.0"
+    xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12">
+
+    <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12" schemaLocation="StruttureGenerali_v1_12.xsd" />
+    <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StrutturePT/v1.0" schemaLocation="StrutturePT_v1_0.xsd" />
+
+	
+	<xs:complexType name="FlussoRT3.0200Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="pt:IdentificativiUtenteGestoreType"/>
+			        <xs:element name="DatiTecnici" type="pt:DatiTecniciBaseType"/>
+					<xs:element name="DatiPrestazione" type="pt:DatiPrestazioneBaseType"/>
+					<xs:element name="ClienteFinale" type="pt:ClienteFinaleType"/>     
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="RT3"/>
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0200"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+  <xs:complexType name="FlussoRT3.0150Type" >
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="pt:IdentificativiUtenteGestoreType"/>
+          <xs:element name="DatiTecnici" type="pt:DatiTecniciBaseType"/>
+		  <xs:element name="DatiPrestazione" type="pt:DatiPrestazioneBaseType"/>
+          <xs:element name="Esito" type="pt:EsitoRiattivazioneType"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="RT3"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0150"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+</xs:schema>

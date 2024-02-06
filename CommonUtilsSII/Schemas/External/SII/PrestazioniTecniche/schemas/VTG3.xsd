@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VTG3/v1"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.6"
+	xmlns:sgas="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.4"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VTG3/v1">
+	
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.6"	schemaLocation="StruttureGenerali_v1_6.xsd"/>
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.4" schemaLocation="StruttureGas_v1_4.xsd"/>
+	
+	<!-- ************** FLUSSI **************** -->
+	
+	<!-- *************** 0200 ***************** -->
+	
+	<xs:complexType name="FlussoVTG3.0200Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="sgas:DatiTecniciConPrelievoType"/>
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleAnagraficaIndirizziEx1Type"/>            
+					<xs:element name="IvaImposte" type="sg:IvaImposteType"/>            
+					<xs:element name="ServizioEnergetico" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Beneficiario" type="sg:BeneficiarioType"/>
+							</xs:sequence>
+						</xs:complexType>	
+					</xs:element>            
+					<xs:element name="Autolettura" type="sg:AutoletturaType" minOccurs="0"/>
+					<xs:element name="InformazioniFUI" type="sg:InformazioniFuiType"/>
+					<xs:element name="DatiAttivazione" type="sgas:DatiAttivazioneVolturaGasDecorrenzaType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="VTG3" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0200" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+</xs:schema>

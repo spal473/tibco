@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.2"
+    elementFormDefault="qualified"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:sgas="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.2"
+    xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.4">
+  
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.4" schemaLocation="StruttureGenerali_v1_4.xsd" />
+  
+  <!-- Tipologia PdR 0 = punto di riconsegna nella titolarità di un cliente domestico
+                     1 = punto di riconsegna relativo a un condominio con uso domestico
+                     2 = punto di riconsegna per usi diversi
+                     3 = punto di riconsegna nella titolarità di un’utenza relativa ad attività di servizio pubblico  -->
+  <xs:element name="TIPO_PDR" type="sgas:TipologiaPdrType" />
+  <xs:simpleType name="TipologiaPdrType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="0"/>
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Codice PDR -->
+  <xs:element name="COD_PDR" type="sgas:CodicePdrType" />
+  <xs:simpleType name="CodicePdrType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[\da-zA-Z]{14}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <!-- Codice REMI -->
+  <xs:element name="COD_REMI" type="sgas:CodiceRemiType" />
+  <xs:simpleType name="CodiceRemiType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\S.{0,13}"></xs:pattern>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Prelievo Annuo Previsto -->
+  <xs:element name="PRELIEVO_ANNUO_PREV" type="sgas:PrelievoAnnuoPrevistoType" />
+  <xs:simpleType name="PrelievoAnnuoPrevistoType">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Codice profilo prelievo standard -->
+  <xs:element name="COD_PROF_PREL_STD" type="sgas:CodProfPrelStdType" />
+  <xs:simpleType name="CodProfPrelStdType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="C1A1"/>
+      <xs:enumeration value="C1B1"/>
+      <xs:enumeration value="C1C1"/>
+      <xs:enumeration value="C1D1"/>
+      <xs:enumeration value="C1E1"/>
+      <xs:enumeration value="C1F1"/>
+      <xs:enumeration value="C2X1"/>
+      <xs:enumeration value="C3A1"/>
+      <xs:enumeration value="C3B1"/>
+      <xs:enumeration value="C3C1"/>
+      <xs:enumeration value="C3D1"/>
+      <xs:enumeration value="C3E1"/>
+      <xs:enumeration value="C3F1"/>
+      <xs:enumeration value="C4X1"/>
+      <xs:enumeration value="C5A1"/>
+      <xs:enumeration value="C5B1"/>
+      <xs:enumeration value="C5C1"/>
+      <xs:enumeration value="C5D1"/>
+      <xs:enumeration value="C5E1"/>
+      <xs:enumeration value="C5F1"/>
+      <xs:enumeration value="T1X1"/>
+      <xs:enumeration value="T1X2"/>
+      <xs:enumeration value="T1X3"/>
+      <xs:enumeration value="T2A1"/>
+      <xs:enumeration value="T2B1"/>
+      <xs:enumeration value="T2C1"/>
+      <xs:enumeration value="T2D1"/>
+      <xs:enumeration value="T2E1"/>
+      <xs:enumeration value="T2F1"/>
+      <xs:enumeration value="T2A2"/>
+      <xs:enumeration value="T2B2"/>
+      <xs:enumeration value="T2C2"/>
+      <xs:enumeration value="T2D2"/>
+      <xs:enumeration value="T2E2"/>
+      <xs:enumeration value="T2F2"/>
+      <xs:enumeration value="T2A3"/>
+      <xs:enumeration value="T2B3"/>
+      <xs:enumeration value="T2C3"/>
+      <xs:enumeration value="T2D3"/>
+      <xs:enumeration value="T2E3"/>
+      <xs:enumeration value="T2F3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <!-- Codice prestazione PdR -->
+  <xs:element name="COD_PRESTAZIONE" type="sgas:CodPrestazionePdrType" />
+  <xs:simpleType name="CodPrestazionePdrType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="A01"/>
+      <xs:enumeration value="A40"/>
+      <xs:enumeration value="D01"/>
+      <xs:enumeration value="SW1"/>
+      <xs:enumeration value="VL1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+
+  <xs:element name="PIVA_UDD" type="sg:PartitaIVAUEType"/>
+  <xs:element name="DATA_ESECUZIONE" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_INIZIO" type="sg:GGMMAAAAType"/>
+  <xs:element name="DATA_FINE" type="sg:GGMMAAAAType"/>
+  <xs:element name="CODICE_COMUNE" type="sg:CodiceComuneIstatType"/>
+  
+  <xs:complexType name="DatiTecniciBaseType">
+    <xs:sequence>
+      <xs:element ref="sgas:COD_PDR"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="DatiTecniciAnagraficaType">
+    <xs:complexContent>
+      <xs:extension base="sgas:DatiTecniciBaseType">
+        <xs:sequence>
+          <xs:element ref="sgas:COD_REMI"/>
+          <xs:element ref="sgas:TIPO_PDR" minOccurs="0"/>
+          <xs:element ref="sgas:COD_PROF_PREL_STD" minOccurs="0"/>
+          <xs:element ref="sgas:PRELIEVO_ANNUO_PREV" minOccurs="0"/>
+          <xs:element ref="sg:PIVA_DISTRIBUTORE" minOccurs="0"/>
+        </xs:sequence>    
+      </xs:extension>
+    </xs:complexContent>    
+  </xs:complexType>
+  
+  <xs:complexType name="DatiTecniciAnagraficaBaseType">
+    <xs:complexContent>
+      <xs:extension base="sgas:DatiTecniciBaseType">
+        <xs:sequence>
+          <xs:element ref="sgas:COD_REMI"/>
+          <xs:element ref="sgas:TIPO_PDR" minOccurs="0"/>
+          <xs:element ref="sg:PIVA_DISTRIBUTORE"/>
+        </xs:sequence>    
+      </xs:extension>
+    </xs:complexContent>    
+  </xs:complexType>
+  
+  <xs:complexType name="DatiPrestazionePdrType">
+    <xs:sequence>
+      <xs:element ref="sgas:COD_PRESTAZIONE"/>
+      <xs:element ref="sgas:PIVA_UDD"/>
+      <xs:element ref="sgas:DATA_ESECUZIONE"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="FornituraBaseType">
+    <xs:sequence>
+      <xs:element ref="sgas:DATA_INIZIO" minOccurs="0"/>
+      <xs:element ref="sgas:DATA_FINE" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="UbicazioneBaseType">
+    <xs:sequence>
+      <xs:element ref="sgas:CODICE_COMUNE"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+</xs:schema>
+ 

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_IV1/v1"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+	
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+	
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12" schemaLocation="StruttureGenerali_v1_12.xsd"/>
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_IV1/v1" schemaLocation="IV1.xsd"/>
+
+	<complexType name="RichiestaDatiAttivazioneContrattualeMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:RichiestaDatiAttivazioneContrattualeRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:RichiestaDatiAttivazioneContrattualeDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="RichiestaDatiAttivazioneContrattualeRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:RichiestaDatiAttivazioneContrattualeAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="RichiestaDatiAttivazioneContrattualeAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="IV1"/>
+					<element name="Operazione" type="string" fixed="IV1.0050"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="RichiestaDatiAttivazioneContrattualeDatiSIIType">
+		<sequence>
+<!-- 			<element name="DatiPratica" type="sg:DatiPraticaType"  minOccurs="0"/> -->
+			<element name="Flusso" type="dat:FlussoIV1.0050Type"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="AmmissibilitaRichiestaMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:AmmissibilitaRichiestaRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:AmmissibilitaRichiestaDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaRichiestaRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:AmmissibilitaRichiestaAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaRichiestaAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="IV1"/>
+					<element name="Operazione" type="string" fixed="IV1.0100"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType> 
+	<complexType name="AmmissibilitaRichiestaDatiSIIType">
+		<sequence>
+<!-- 			<element name="DatiPratica" type="sg:DatiPraticaType"  minOccurs="0"/> -->
+			<element name="Flusso" type="dat:FlussoIV1.0100Type"/>
+		</sequence>
+	</complexType>
+	
+</schema>

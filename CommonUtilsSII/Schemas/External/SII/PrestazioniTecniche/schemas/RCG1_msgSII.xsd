@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_RCG1/v1"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.9"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+	
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+	
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_RCG1/v1" schemaLocation="RCG1.xsd"/>
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.9" schemaLocation="StruttureGenerali_v1_9.xsd" />
+	
+	<complexType name="TrasmissioneRisoluzioneContrattualeMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:TrasmissioneRisoluzioneContrattualeRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:TrasmissioneRisoluzioneContrattualeDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="TrasmissioneRisoluzioneContrattualeRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:TrasmissioneRisoluzioneContrattualeAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="TrasmissioneRisoluzioneContrattualeAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="RCG1"/>
+					<element name="Operazione" type="string" fixed="RCG1.0050"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="TrasmissioneRisoluzioneContrattualeDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoRCG1.0050Type"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="AmmissibilitaRisoluzioneContrattualeMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:AmmissibilitaRisoluzioneContrattualeRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:AmmissibilitaRisoluzioneContrattualeDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaRisoluzioneContrattualeRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:AmmissibilitaRisoluzioneContrattualeAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaRisoluzioneContrattualeAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="RCG1"/>
+					<element name="Operazione" type="string" fixed="RCG1.0100"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType> 
+	<complexType name="AmmissibilitaRisoluzioneContrattualeDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoRCG1.0100Type"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="NotificaVerificaTimgMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:NotificaVerificaTimgRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:NotificaVerificaTimgDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaVerificaTimgRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:NotificaVerificaTimgAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="NotificaVerificaTimgAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="RCG1"/>
+					<element name="Operazione" type="string" fixed="RCG1.0200"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType> 
+	<complexType name="NotificaVerificaTimgDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoRCG1.0200Type"/>
+		</sequence>
+	</complexType>
+	
+</schema>

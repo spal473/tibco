@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SM1/v1"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SM1/v1" 
+		schemaLocation="SM1.xsd"/>
+
+	<complexType name="trasmissioneRichiestaSospensioneMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:trasmissioneRichiestaSospensioneRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:trasmissioneRichiestaSospensioneDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="trasmissioneRichiestaSospensioneRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:trasmissioneRichiestaSospensioneAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="trasmissioneRichiestaSospensioneAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="SM1"/>
+					<element name="Operazione" type="string" fixed="SM1.0050"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="trasmissioneRichiestaSospensioneDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoSM1.0050Type"/>
+		</sequence>
+	</complexType>
+	
+	
+	<complexType name="ammissibilitaTrasmissioneMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:ammissibilitaTrasmissioneRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:ammissibilitaTrasmissioneDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ammissibilitaTrasmissioneRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:ammissibilitaTrasmissioneAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ammissibilitaTrasmissioneAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="SM1"/>
+					<element name="Operazione" type="string" fixed="SM1.0100"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ammissibilitaTrasmissioneDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoSM1.0100Type"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="notificaEsitoFinaleMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:notificaEsitoFinaleRichiestaSIIType"/>
+					<element name="DatiSII" type="msgSII:notificaEsitoFinaleDatiSIIType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="notificaEsitoFinaleRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:notificaEsitoFinaleAzioneRichiestaType"/>
+					<element name="Erogatore" type="msgSII:UtenteType"/>
+					<element name="Fruitore" type="msgSII:UtenteType"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="notificaEsitoFinaleAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="SM1"/>
+					<element name="Operazione" type="string" fixed="SM1.0150"/>
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="notificaEsitoFinaleDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoSM1.0150Type"/>
+		</sequence>
+	</complexType>
+	
+</schema>

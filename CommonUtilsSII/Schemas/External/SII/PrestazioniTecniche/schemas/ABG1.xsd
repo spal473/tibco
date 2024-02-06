@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_ABG1/v1"
+  xmlns:sabg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureABG/v1.0"
+  xmlns:sgas="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.8"
+  xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.10">
+  
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureABG/v1.0" schemaLocation="StruttureABG_v1_0.xsd" />
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.8" schemaLocation="StruttureGas_v1_8.xsd" />
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.10" schemaLocation="StruttureGenerali_v1_10.xsd"/>
+
+  <!-- ************** FLUSSI **************** -->
+  
+  <xs:complexType name="FlussoABG1.0050Type">
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreType"/>
+          <xs:element name="DatiTecnici" type="sgas:DatiTecniciBaseType"/>
+          <xs:element name="DatiAbbinamento" type="sabg:DatiAbbinamentoType"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="ABG1"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0050"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="FlussoABG1.0100Type">
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreCPOpzType"/>
+          <xs:element name="DatiTecnici" type="sgas:DatiTecniciBaseType"/>
+          <xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="ABG1"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0100"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="FlussoABG1.0200Type">
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteGestoreCPType"/>
+          <xs:element name="DatiTecnici" type="sgas:DatiTecniciBaseRemiType"/>
+          <xs:element name="DatiAbbinamento" type="sabg:DatiAbbinamentoNotificaType"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="ABG1"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0200"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="FlussoABG1.0150Type">
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteGestoreCPType"/>
+          <xs:element name="DatiTecnici" type="sgas:DatiTecniciBaseRemiType"/>
+          <xs:element name="DatiAbbinamento" type="sabg:DatiAbbinamentoEsitoType"/>
+          <xs:element name="Esito" type="sabg:EsitoOpzType"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="ABG1"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0150"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="FlussoABG1.0151Type">
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteGestoreCPType"/>
+          <xs:element name="DatiTecnici" type="sgas:DatiTecniciBaseRemiType"/>
+          <xs:element name="DatiAbbinamento" type="sabg:DatiAbbinamentoEsitoType"/>
+          <xs:element name="Esito" type="sabg:EsitoObbType"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="ABG1"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0151"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+</xs:schema>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.6"
+	 xmlns:sgas="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.4"
+	 xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VAG2/v1"
+	 targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VAG2/v1"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.6" schemaLocation="StruttureGenerali_v1_6.xsd"/>
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.4" schemaLocation="StruttureGas_v1_4.xsd"/>
+
+	<!-- ************** FLUSSI **************** -->
+	<xs:complexType name="FlussoVAG2.0050Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreType"/>
+					<xs:element name="DatiTecnici">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="sgas:DatiTecniciBaseType">
+									<xs:sequence>
+										<xs:element ref="sgas:TIPO_PDR"/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleConDenomType"/>
+					<xs:element name="DATA_RIFERIMENTO" type="sg:GGMMAAAAType"/>
+					<xs:element name="Ubicazione" type="sgas:UbicazioneBaseType"/>
+					<xs:element name="Motivazione">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="sg:MOTIVAZIONE"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" type="xs:anySimpleType" fixed="VAG2" use="required"/>
+				<xs:attribute name="COD_FLUSSO" type="xs:anySimpleType" fixed="0050" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- *************** 0100 ***************** -->
+	<xs:complexType name="FlussoVAG2.0100Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreCPOpzType"/>
+					<xs:element name="DatiTecnici" type="sgas:DatiTecniciBaseType"/>
+					<xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" type="xs:anySimpleType" fixed="VAG2" use="required"/>
+				<xs:attribute name="COD_FLUSSO" type="xs:anySimpleType" fixed="0100" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- *************** 0150 ***************** -->
+	<xs:complexType name="FlussoVAG2.0150Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="sgas:DatiTecniciBaseType"/>
+					<xs:element name="Esito" type="sg:EsitoBaseType"/>
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" type="xs:anySimpleType" fixed="VAG2" use="required"/>
+				<xs:attribute name="COD_FLUSSO" type="xs:anySimpleType" fixed="0150" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- *************** 0050 ***************** -->
+</xs:schema>

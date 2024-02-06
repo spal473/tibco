@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:siv="http://www.acquirenteunico.it/schemas/SII_AU/StruttureIV/v1.0"
+	 xmlns:sel="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.12"
+	 xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12"
+	 targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureIV/v1.0"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12" schemaLocation="StruttureGenerali_v1_12.xsd"/>
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.12" schemaLocation="StruttureEl_v1_12.xsd"/>
+	<xs:simpleType name="StatoPodType">
+		<xs:restriction base="xs:int">
+			<xs:pattern value="[0-1]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Decimal_6_6Type">
+		<xs:restriction base="xs:string"/>
+		<!--	<xs:pattern value="^(([1-9]\d{0,5})|0)(\.)[0-9]\d{0,5}$"/> convertito a Stringa semplice per problemi di validazione-->
+	</xs:simpleType>
+	<xs:simpleType name="MercatoProvenienzaVTType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="DateRichieste255Type">
+		<xs:restriction base="xs:string"/>
+		<!--	<xs:pattern value="^((0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}[,]?){1,23}$"/> convertito a Stringa semplice per problemi di validazione-->
+	</xs:simpleType>
+	<xs:complexType name="DateRichiesteSwitchingType">
+		<xs:sequence>
+			<xs:element name="DATA_DECORRENZA_SW" type="siv:DateRichieste255Type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DateRichiesteVoltureTITIIIType">
+		<xs:sequence>
+			<xs:element name="DATA_DECORRENZA_VT_TIT_III" type="siv:DateRichieste255Type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DateRichiesteVoltureTITIVType">
+		<xs:sequence>
+			<xs:element name="DATA_DECORRENZA_VT_TIT_IV" type="siv:DateRichieste255Type"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiContrattoType">
+		<xs:sequence>
+			<xs:element name="DOC_RICHIESTA_VT" type="sg:EsitoBoolType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataDecorrenzaPresuntaVTType">
+		<xs:sequence>
+			<xs:element name="DATA_DECORRENZA_PRES" type="sg:GGMMAAAAType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnagraficaClienteFinaleTypeVT">
+		<xs:sequence>
+			<xs:element ref="sg:CF"/>
+			<xs:element ref="sg:PIVA" minOccurs="0"/>
+			<xs:element ref="sg:CF_STRANIERO" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciVTType">
+		<xs:complexContent>
+			<xs:extension base="sel:DatiTecniciBaseType">
+				<xs:sequence>
+					<xs:element name="STATO_POD" type="siv:StatoPodType"/>
+					<xs:element name="PMA_POD" type="siv:Decimal_6_6Type" minOccurs="0"/>
+					<xs:element name="Tensione" type="sel:TensioneType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ClienteFinaleSoloIndirizzoType">
+		<xs:sequence>
+			<xs:element name="IndirizzoFornitura" type="sg:IndirizzoAllObbType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiCommercialiVTType">
+		<xs:sequence>
+			<xs:element name="MERCATO_PROVENIENZA" type="siv:MercatoProvenienzaVTType" minOccurs="0"/>
+			<xs:element name="POTCONTRIMP" type="sg:Decimal_9_3_Type" minOccurs="0"/>
+			<xs:element name="POTDISP" type="sg:Decimal_9_3_Type" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Scientific5dType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[+\-]?\d{5}([Ee])([+]?(\d{2})|[-]([0][0-9]|[1][0-3]))"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="DatiUtiliAiFiniDelSettlementType">
+		<xs:sequence>
+			<xs:element name="CRPP_F1_AAM" type="siv:Scientific5dType" minOccurs="0"/>
+			<xs:element name="CRPP_F2_AAM" type="siv:Scientific5dType" minOccurs="0"/>
+			<xs:element name="CRPP_F3_AAM" type="siv:Scientific5dType" minOccurs="0"/>
+			<xs:element name="CRPP_F1_AAM1" type="siv:Scientific5dType" minOccurs="0"/>
+			<xs:element name="CRPP_F2_AAM1" type="siv:Scientific5dType" minOccurs="0"/>
+			<xs:element name="CRPP_F3_AAM1" type="siv:Scientific5dType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

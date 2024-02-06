@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:sabg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureABG/v1.0"
+	 xmlns:sgas="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.8"
+	 xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.10"
+	 targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureABG/v1.0"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.8" schemaLocation="StruttureGas_v1_8.xsd"/>
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.10" schemaLocation="StruttureGenerali_v1_10.xsd"/>
+	<xs:element name="MOTIVAZIONE" type="sgas:MotivazioneDissociazioneStringType"/>
+	<xs:complexType name="DatiAbbinamentoType">
+		<xs:sequence>
+			<xs:element ref="sg:PIVA_UDB"/>
+			<xs:element ref="sg:DATA_DEC"/>
+			<xs:element ref="sgas:PROCESSO"/>
+			<xs:element ref="sgas:CP_GESTORE_PROCESSO" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiAbbinamentoNotificaType">
+		<xs:sequence>
+			<xs:element ref="sg:PIVA_UDB"/>
+			<xs:element ref="sg:DATA_DEC"/>
+			<xs:element ref="sgas:TIPO_NOTIFICA"/>
+			<xs:element ref="sgas:PROCESSO" minOccurs="0"/>
+			<xs:element ref="sgas:CP_GESTORE_PROCESSO" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiAbbinamentoEsitoType">
+		<xs:sequence>
+			<xs:element ref="sg:PIVA_UDB"/>
+			<xs:element ref="sg:DATA_DEC"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiAbbinamentoUddType">
+		<xs:sequence>
+			<xs:element ref="sg:PIVA_UDD"/>
+			<xs:element ref="sg:DATA_DEC"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiAbbinamentoDataDecType">
+		<xs:sequence>
+			<xs:element ref="sg:DATA_DEC"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Potenza" type="sabg:DatiPotenzaType"/>
+	<xs:complexType name="DatiPotenzaType">
+		<xs:sequence>
+			<xs:element ref="sgas:POT_MAX_RIC" minOccurs="0"/>
+			<xs:element ref="sgas:POT_TOT_INST" minOccurs="0"/>
+			<xs:element ref="sgas:MAX_PRELIEVO_ORA" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatiTecniciRemiCapacitaPotenzaType">
+		<xs:complexContent>
+			<xs:extension base="sgas:DatiTecniciBaseRemiType">
+				<xs:sequence>
+					<xs:element ref="sgas:CAP_TRASP_PDR" minOccurs="0"/>
+					<xs:element ref="sabg:Potenza" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DatiSettlementOpzType">
+		<xs:sequence>
+			<xs:element ref="sgas:TRATTAMENTO" minOccurs="0"/>
+			<xs:element ref="sgas:PREL_ANNUO_PREV" minOccurs="0"/>
+			<xs:element ref="sgas:COD_PROF_PREL_STD" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConfermaAbbinamentoType">
+		<xs:sequence>
+			<xs:element ref="sgas:CONFERMA_ABB"/>
+			<xs:element ref="sg:COD_CAUSALE" minOccurs="0"/>
+			<xs:element ref="sg:MOTIVAZIONE" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EsitoBaseType">
+		<xs:sequence>
+			<xs:element ref="sg:ESITO"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EsitoOpzType">
+		<xs:complexContent>
+			<xs:extension base="sabg:EsitoBaseType">
+				<xs:sequence>
+					<xs:element ref="sg:COD_CAUSALE" minOccurs="0"/>
+					<xs:element ref="sg:MOTIVAZIONE" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EsitoObbType">
+		<xs:complexContent>
+			<xs:extension base="sabg:EsitoBaseType">
+				<xs:sequence>
+					<xs:element ref="sg:COD_CAUSALE"/>
+					<xs:element ref="sg:MOTIVAZIONE"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DatiRichiestaDissociazioneType">
+		<xs:sequence>
+			<xs:element ref="sg:DATA_DEC"/>
+			<xs:element ref="sg:PIVA_UDD"/>
+			<xs:element ref="sabg:MOTIVAZIONE"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

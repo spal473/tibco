@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/Gas"
+	xmlns:tns="http://www.example.org/Gas" elementFormDefault="qualified"
+	xmlns:pref="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_ABG1/v1"
+	xmlns:pref1="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_ACG1/v2"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_NVG1/v2"
+	xmlns:pref2="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_NVG2/v1"
+	xmlns:pref3="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_PKG1/v2"
+	xmlns:pref4="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_PKG2/v1"
+	xmlns:pref5="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_RCG1/v1"
+	xmlns:pref6="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_RCG3/v1"
+	xmlns:pref7="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SWG1/v1"
+	xmlns:pref8="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SWG3/v1"
+	xmlns:pref10="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_UIG3/v1"
+	xmlns:pref11="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VSG1/v1"
+	xmlns:pref12="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VSG2/v1"
+	xmlns:pref13="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VTG1/v2"
+	xmlns:pref14="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VTG4/v1"
+	xmlns:pref9="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SWG4/v1">
+	<import
+		schemaLocation="../../../External/SII/PrestazioniTecniche/schemas/ABG1.xsd"
+		namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_ABG1/v1">
+	</import>
+
+	<import
+		schemaLocation="../../../External/SII/PrestazioniTecniche/schemas/ACG1_v2.xsd"
+		namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_ACG1/v2">
+	</import>
+	<import
+		schemaLocation="../../../External/SII/PrestazioniTecniche/schemas/NVG1_v2.xsd"
+		namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_NVG1/v2">
+	</import>
+	<import
+		schemaLocation="../../../External/SII/PrestazioniTecniche/schemas/NVG2.xsd"
+		namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_NVG2/v1">
+	</import>
+	<import
+		schemaLocation="../../../External/SII/PrestazioniTecniche/schemas/PKG1.xsd"
+		namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_PKG1/v2">
+	</import>
+	<import
+		schemaLocation="../../../External/SII/PrestazioniTecniche/schemas/PKG2.xsd"
+		namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_PKG2/v1">
+	</import>
+	<import
+		schemaLocation="../../../External/SII/PrestazioniTecniche/schemas/RCG1.xsd"
+		namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_RCG1/v1">
+	</import>
+	<import
+		schemaLocation="../../../External/SII/PrestazioniTecniche/schemas/RCG3.xsd"
+		namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_RCG3/v1">
+	</import>
+	<import
+		schemaLocation="../../../External/SII/PrestazioniTecniche/schemas/SWG1.xsd"
+		namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SWG1/v1">
+	</import>
+	<import
+		schemaLocation="../../../External/SII/PrestazioniTecniche/schemas/SWG3.xsd"
+		namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SWG3/v1">
+	</import>
+	<import
+		schemaLocation="../../../External/SII/PrestazioniTecniche/schemas/UIG3.xsd"
+		namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_UIG3/v1">
+	</import>
+	<import
+		schemaLocation="../../../External/SII/PrestazioniTecniche/schemas/VSG2.xsd"
+		namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VSG2/v1">
+	</import>
+	<import
+		schemaLocation="../../../External/SII/PrestazioniTecniche/schemas/VTG1_v2.xsd"
+		namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VTG1/v2">
+	</import>
+	<import
+		schemaLocation="../../../External/SII/PrestazioniTecniche/schemas/VTG4.xsd"
+		namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VTG4/v1">
+	</import>
+
+	<import
+	    schemaLocation="../../../External/SII/PrestazioniTecniche/schemas/SWG4.xsd"
+	    namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SWG4/v1">
+	</import>
+	<element name="ABG10050" type="pref:FlussoABG1.0050Type"></element>
+
+	<element name="ACG10050" type="pref1:FlussoACG1.0050Type"></element>
+
+	<element name="ACG10100" type="pref1:FlussoACG1.0100Type"></element>
+
+	<element name="NVG10201" type="dat:FlussoNVG1.0201Type"></element>
+
+	<element name="NVG10200" type="dat:FlussoNVG1.0200Type"></element>
+
+	<element name="NVG20201" type="pref2:FlussoNVG2.0201Type"></element>
+
+	<element name="NVG20200" type="pref2:FlussoNVG2.0200Type"></element>
+
+	<element name="PKG10050" type="pref3:FlussoPKG1.0050Type"></element>
+
+	<element name="PKG10150" type="pref3:FlussoPKG1.0150Type"></element>
+
+	<element name="PKG20200" type="pref4:FlussoPKG2.0200Type"></element>
+
+	<element name="PKG20250" type="pref4:FlussoPKG2.0250Type"></element>
+
+	<element name="RCG10050" type="pref5:FlussoRCG1.0050Type"></element>
+
+	<element name="RCG10100" type="pref5:FlussoRCG1.0100Type"></element>
+
+	<element name="RCG30200" type="pref6:FlussoRCG3.0200Type"></element>
+
+	<element name="SWG10050" type="pref7:FlussoSWG1.0050Type"></element>
+
+	<element name="SWG10100" type="pref7:FlussoSWG1.0100Type"></element>
+
+	<element name="SWG10200" type="pref7:FlussoSWG1.0200Type"></element>
+
+	<element name="SWG30200" type="pref8:FlussoSWG3.0200Type"></element>
+
+	<element name="UIG30200" type="pref10:FlussoUIG3.0200Type"></element>
+
+	<element name="VSG20200" type="pref12:FlussoVSG2.0200Type"></element>
+
+	<element name="VTG10050" type="pref13:FlussoVTG1.0050Type"></element>
+
+	<element name="VTG10100" type="pref13:FlussoVTG1.0100Type"></element>
+
+	<element name="VTG10150" type="pref13:FlussoVTG1.0150Type"></element>
+
+	<element name="VTG40200" type="pref14:FlussoVTG4.0200Type"></element>
+
+    <element name="SWG40200" type="pref9:FlussoSWG4.0200Type"></element>
+
+    <element name="ABG10100" type="pref:FlussoABG1.0100Type"></element>
+    
+    <element name="ABG10150" type="pref:FlussoABG1.0150Type"></element>
+    
+    <element name="ABG10151" type="pref:FlussoABG1.0151Type"></element>
+    
+    <element name="ABG10200" type="pref:FlussoABG1.0200Type"></element>
+</schema>

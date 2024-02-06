@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SMG6/v1"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SMG6/v1"
+	xmlns:sgas="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.8"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.10"
+	elementFormDefault="qualified">
+
+	<import namespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII" schemaLocation="SII_PdC-MessaggioSII.xsd" />
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.10" schemaLocation="StruttureGenerali_v1_10.xsd" />
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGAS/v1.8" schemaLocation="StruttureGas_v1_8.xsd" />
+	
+	<!-- Flussi Astratti -->
+	
+	<complexType name="FlussoSMG6Type" >
+		<complexContent>
+			<extension base="dat:FlussoSMG6BaseType">
+				<sequence>
+					
+				</sequence>        
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="FlussoSMG6BaseType" >
+		<complexContent>
+			<extension base="sg:FlussoTypeAbstract">
+				<sequence>
+					<element name="IdentificativiRichiesta" type="dat:IdentificativiRichiestaSMG6Type"/>
+				</sequence>        
+				<attribute name="COD_SERVIZIO" use="required" fixed="SMG6"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="FlussoSMG6.0200Type" >
+		<complexContent>
+			<extension base="dat:FlussoSMG6Type">
+				<sequence>
+					<element name="InformazioniTrasmissione" type="dat:InformazioneTrasmissione0200Type" minOccurs="0"/>
+					<element name="FileDisponibile" type="dat:DettaglioFileDisponibile0200Type"  minOccurs="1" maxOccurs="unbounded"/>
+				</sequence>            
+				<attribute name="COD_FLUSSO" use="required" fixed="0200"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="FlussoSMG6.0040Type" >
+		<complexContent>
+			<extension base="dat:FlussoSMG6BaseType">
+				<sequence>
+					<sequence>
+						<element name="IDENTIFICATORE_FILE" type="sg:String255obb"/>
+					</sequence>            
+				</sequence>
+				<attribute name="COD_FLUSSO" use="required" fixed="0040"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="FlussoSMG6.0101Type" >
+		<complexContent>
+			<extension base="dat:FlussoSMG6BaseType">
+				<sequence>
+					<sequence>
+						<element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+						<element name="InformazioniTrasmissione" type="dat:InformazioneTrasmissione0101Type" minOccurs="0"/>
+					</sequence>            
+				</sequence>
+				<attribute name="COD_FLUSSO" use="required" fixed="0101"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="DettaglioFileDisponibile0200Type">
+		<sequence>
+			<element name="IDENTIFICATORE_FILE" type="sg:String255"/>
+			<element name="DIMENSIONE_FILE" type="sg:Numeric6"/>
+			<element name="TIPO_FILE" type="sg:FormatoFileType"/>
+			<element name="DIGEST" type="sg:String100"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="InformazioneTrasmissione0101Type">
+		<sequence>
+			<element name="FORMATO_FILE" type="sg:FormatoFileType"/>
+			<element name="IDENTIFICATORE_FILE" type="sg:String255obb"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="InformazioneTrasmissione0200Type">
+		<sequence>
+			<element name="ANNO_RIFERIMENTO" type="sg:AAAAType"/>
+			<element name="MESE_RIFERIMENTO" type="sg:MMType"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="IdentificativiRichiestaSMG6Type">
+		<sequence>
+			<element name="PIVA_RDB" type="sg:PartitaIVAUEType"/>
+			<element ref="sg:PIVA_GESTORE"/>
+			<element ref="sg:CP_GESTORE"/>
+		</sequence>
+	</complexType>
+	
+</schema>

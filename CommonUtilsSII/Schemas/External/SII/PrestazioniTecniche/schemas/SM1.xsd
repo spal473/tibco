@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified"
+    targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_SM1/v1"
+	xmlns:pt="http://www.acquirenteunico.it/schemas/SII_AU/StrutturePT/v1.0"
+    xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12">
+	
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12" schemaLocation="StruttureGenerali_v1_12.xsd" />
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StrutturePT/v1.0" schemaLocation="StrutturePT_v1_0.xsd" />
+  
+<!-- ************** FLUSSI **************** -->
+
+  <xs:complexType name="FlussoSM1.0050Type" >
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="pt:IdentificativiUtenteGestoreCPBaseType"/>
+          <xs:element name="DatiTecnici" type="pt:DatiTecniciBaseType"/>
+		  <xs:element name="DatiPrestazione" type="pt:DatiPrestazioneMorositaType"/>
+		  <xs:element name="ClienteFinale" type="pt:ClienteFinaleType"/>                     
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="SM1"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0050"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="FlussoSM1.0100Type" >
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="pt:IdentificativiRichiestaUtenteCPGestoreCPType"/>
+          <xs:element name="DatiTecnici" type="pt:DatiTecniciBaseType"/>
+          <xs:element name="Ammissibilita" type="pt:AmmissibilitaBaseType"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="SM1"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0100"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  
+  <xs:complexType name="FlussoSM1.0150Type" >
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="pt:IdentificativiRichiestaUtenteGestoreCPOpzType"/>
+          <xs:element name="DatiTecnici" type="pt:DatiTecniciBaseType"/>
+		  <xs:element name="DatiPrestazione" type="pt:DatiPrestazioneBaseType"/>
+          <xs:element name="Esito" type="pt:EsitoGestoreUtenteType"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="SM1"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0150"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+</xs:schema>

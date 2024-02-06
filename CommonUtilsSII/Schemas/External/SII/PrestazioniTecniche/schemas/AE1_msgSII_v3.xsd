@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:msgSII="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_AE1/v3"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/2010/SII_AU/MessaggioSII">
+
+	<include schemaLocation="SII_PdC-MessaggioSII.xsd"/>
+
+	<import namespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_AE1/v3" schemaLocation="AE1_v3.xsd"/>
+	
+	<!-- ************** AE1:0050 ************** --> 
+	
+	<complexType name="ComunicazioneAggiornamentoDatiRcuMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:ComunicazioneAggiornamentoDatiRcuRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:ComunicazioneAggiornamentoDatiRcuDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ComunicazioneAggiornamentoDatiRcuRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:ComunicazioneAggiornamentoDatiRcuAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ComunicazioneAggiornamentoDatiRcuAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="AE1" />
+					<element name="Operazione" type="string" fixed="AE1.0050" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="ComunicazioneAggiornamentoDatiRcuDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoAE1.0050Type" />
+		</sequence>
+	</complexType>
+
+	<!-- ************** AE1:0050 ************** -->
+	
+	<!-- ************** AE1:0100 ************** -->
+	
+	<complexType name="AmmissibilitaComunicazioneMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:AmmissibilitaComunicazioneRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:AmmissibilitaComunicazioneDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaComunicazioneRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:AmmissibilitaComunicazioneAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaComunicazioneAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="AE1" />
+					<element name="Operazione" type="string" fixed="AE1.0100" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="AmmissibilitaComunicazioneDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoAE1.0100Type" />
+		</sequence>
+	</complexType>
+	
+	<!-- ************** AE1:0100 ************** -->
+	
+	<!-- ************** AE1:0150 ************** -->
+	
+	<complexType name="EsitoAggiornamentoDatiRcuMessaggioSIIType">
+		<complexContent>
+			<restriction base="msgSII:MessaggioSIIType">
+				<sequence>
+					<element name="RichiestaSII" type="msgSII:EsitoAggiornamentoDatiRcuRichiestaSIIType" />
+					<element name="DatiSII" type="msgSII:EsitoAggiornamentoDatiRcuDatiSIIType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="EsitoAggiornamentoDatiRcuRichiestaSIIType">
+		<complexContent>
+			<restriction base="msgSII:RichiestaSIIType">
+				<sequence>
+					<element name="AzioneRichiesta" type="msgSII:EsitoAggiornamentoDatiRcuAzioneRichiestaType" />
+					<element name="Erogatore" type="msgSII:UtenteType" />
+					<element name="Fruitore" type="msgSII:UtenteType" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="EsitoAggiornamentoDatiRcuAzioneRichiestaType">
+		<complexContent>
+			<restriction base="msgSII:AzioneRichiestaType">
+				<sequence>
+					<element name="Servizio" type="string" fixed="AE1" />
+					<element name="Operazione" type="string" fixed="AE1.0150" />
+				</sequence>
+			</restriction>
+		</complexContent>
+	</complexType>
+	<complexType name="EsitoAggiornamentoDatiRcuDatiSIIType">
+		<sequence>
+			<element name="Flusso" type="dat:FlussoAE1.0150Type" />
+		</sequence>
+	</complexType>
+	
+	<!-- ************** AE1:0150 ************** -->
+
+</schema>

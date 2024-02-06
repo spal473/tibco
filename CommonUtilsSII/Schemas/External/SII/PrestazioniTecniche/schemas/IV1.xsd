@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_IV1/v1"
+  xmlns:siv="http://www.acquirenteunico.it/schemas/SII_AU/StruttureIV/v1.0"
+  xmlns:sel="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.12"
+  xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12">
+  
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureIV/v1.0" schemaLocation="StruttureIV_v1_0.xsd" />
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.12" schemaLocation="StruttureEl_v1_12.xsd" />
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.12" schemaLocation="StruttureGenerali_v1_12.xsd"/>
+
+  <!-- ************** FLUSSI **************** -->
+  
+  <xs:complexType name="FlussoIV1.0050Type">
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPOpzGestoreType"/>
+          <xs:element name="DatiTecnici" type="sel:DatiTecniciBaseType"/>
+          <xs:element name="DatiContratto" type="siv:DatiContrattoType"/>
+          <xs:element name="ClienteFinale" type="siv:AnagraficaClienteFinaleTypeVT"/>          
+          <xs:element name="DataDecorrenzaPresunta" type="siv:DataDecorrenzaPresuntaVTType"/>            
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="IV1"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0050"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <xs:complexType name="FlussoIV1.0100Type">
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteCPGestoreCPOpzType"/>
+          <xs:element name="Ammissibilita" type="sg:AmmissibilitaBaseType"/>
+          <xs:element name="DatiTecnici" type="siv:DatiTecniciVTType" minOccurs="0"/>
+          <xs:element name="ClienteFinale" type="siv:ClienteFinaleSoloIndirizzoType" minOccurs="0"/>
+          <xs:element name="DatiCommerciali" type="siv:DatiCommercialiVTType" minOccurs="0"/>
+          <xs:element name="DatiUtiliAiFiniDelSettlement" type="siv:DatiUtiliAiFiniDelSettlementType" minOccurs="0"/>
+          <xs:element name="DateRichiesteSwitching" type="siv:DateRichiesteSwitchingType" minOccurs="0"/>
+          <xs:element name="DateRichiesteVoltureTIT_III" type="siv:DateRichiesteVoltureTITIIIType" minOccurs="0"/>
+          <xs:element name="DateRichiesteVoltureTIT_IV" type="siv:DateRichiesteVoltureTITIVType" minOccurs="0"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="IV1"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0100"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+</xs:schema>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="qualified"
+  targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_VSG2/v1"
+  xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.8"
+  xmlns:saoc="http://www.acquirenteunico.it/schemas/SII_AU/StruttureAOCGas/v1.0">
+  
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.8" schemaLocation="StruttureGenerali_v1_8.xsd" />
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureAOCGas/v1.0" schemaLocation="StruttureAOCGas_v1_0.xsd" />
+  
+  <!-- ************** FLUSSI **************** -->
+  
+  <xs:complexType name="FlussoVSG2.0200Type" >
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteGestoreCPType"/>
+          <xs:element name="DatiPrestazione" type="saoc:DatiPrestazionePdrPivaDistrOpzType"/>
+          <xs:element name="DatiTecnici" type="saoc:DatiTecniciType"/>
+          <xs:element name="TrattamentoSettlement" type="saoc:DatiTrattamentoSettlementType" minOccurs="0"/>
+          <xs:element name="DatiSettlement" type="saoc:DatiSettlementType" minOccurs="0"/>
+          <xs:element name="ClienteFinale" type="saoc:ClienteFinaleDatiFiscaliBaseType" minOccurs="0"/>
+          <xs:element name="BonusSociale" type="saoc:BonusSocialeType" minOccurs="0"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="VSG2"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0200"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+</xs:schema>

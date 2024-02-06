@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_UI2/v1"
+	xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.5"
+	xmlns:sel="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.3"
+	xmlns:dat="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_UI2/v1">
+	
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.5"	schemaLocation="StruttureGenerali_v1_5.xsd"/>
+	<xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureEL/v1.3" schemaLocation="StruttureEl_v1_3.xsd"/>
+	
+	<!-- ************** FLUSSI **************** -->
+	
+	<!-- *************** 0200 ***************** -->
+	
+	<xs:complexType name="FlussoUI2.0200Type">
+		<xs:complexContent>
+			<xs:extension base="sg:FlussoTypeAbstract">
+				<xs:sequence>
+					<xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaUtenteGestoreCPType"/>
+					<xs:element name="DatiTecnici" type="sel:DatiTecniciDistributoreType"/>
+					<xs:element name="ClienteFinale" type="sg:ClienteFinaleFornituraType"/>            
+					<xs:element name="ReferenteClienteFinale" type="sg:AnagraficaReferenteClienteFinaleType" minOccurs="0"/>            
+					<xs:element name="DatiCommerciali" type="sg:DatiCommercialiType"/>
+					<xs:element name="DatiRisoluzione" type="sel:DatiEstesiRisoluzioneContrattualeType"/>            
+				</xs:sequence>
+				<xs:attribute name="COD_SERVIZIO" use="required" fixed="UI2" />
+				<xs:attribute name="COD_FLUSSO" use="required" fixed="0200" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+</xs:schema>

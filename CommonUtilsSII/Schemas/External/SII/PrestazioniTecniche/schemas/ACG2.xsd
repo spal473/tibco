@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.acquirenteunico.it/schemas/SII_AU/Flussi_ACG2/v1" xmlns:sg="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.8" xmlns:saoc="http://www.acquirenteunico.it/schemas/SII_AU/StruttureAOCGas/v1.0">
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureGenerali/v1.8" schemaLocation="StruttureGenerali_v1_8.xsd"/>
+  <xs:import namespace="http://www.acquirenteunico.it/schemas/SII_AU/StruttureAOCGas/v1.0" schemaLocation="StruttureAOCGas_v1_0.xsd"/>
+  
+  <!-- ************** FLUSSI **************** -->
+  
+  <!-- *************** ACG2.0200 ***************** -->
+  
+  <xs:complexType name="FlussoACG2.0200Type">
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreGestoreCPType"/>
+          <xs:element name="DatiRichiesta" type="saoc:DatiRichiestaType"/>
+          <xs:element name="DatiTecnici" type="saoc:DatiTecniciTipoPDROpzType"/>
+          <xs:element name="ClienteFinale" type="saoc:ClienteFinaleType"/>
+          <xs:element name="ReferenteClienteFinale" type="saoc:ReferenteClienteFinaleType" minOccurs="0"/>
+          <xs:element name="DatiCommerciali" type="saoc:DatiCommercialiBaseType" minOccurs="0"/>
+          <xs:element name="ServizioEnergetico" type="saoc:ServizioEnergeticoType"/>
+          <xs:element name="DatiContratto" type="saoc:DatiContrattoType" minOccurs="0"/>
+          <xs:element name="Motivazione" type="saoc:MotivazioneType" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="ACG2"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="0200"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+  <!-- *************** RESP ***************** -->
+  
+  <xs:complexType name="FlussoACG2.RESPType" >
+    <xs:complexContent>
+      <xs:extension base="sg:FlussoTypeAbstract">
+        <xs:sequence>
+          <xs:element name="IdentificativiRichiesta" type="sg:IdentificativiRichiestaDistributoreGestoreCPType"/>
+          <xs:element name="Esito" type="sg:DefaultEsitoType"/>
+        </xs:sequence>        
+        <xs:attribute name="COD_SERVIZIO" use="required" fixed="ACG2"/>
+        <xs:attribute name="COD_FLUSSO" use="required" fixed="RESP"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  
+</xs:schema>
